@@ -10,7 +10,7 @@ export class DeleteCardService {
 
   async execute(id: string): Promise<void> {
     if (!id) {
-      throw new Error('the id does not exist!');
+      throw new Error('The property id is required!');
     }
 
     const card = await this.cardRepository.findById(id);

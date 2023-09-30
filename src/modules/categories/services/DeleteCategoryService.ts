@@ -10,7 +10,7 @@ export class DeleteCategoryService {
 
   async execute(id: string): Promise<void> {
     if (!id) {
-      throw new Error('The property d does not exist!');
+      throw new Error('The property id is required!');
     }
 
     const category = await this.categoryRepository.findById(id);

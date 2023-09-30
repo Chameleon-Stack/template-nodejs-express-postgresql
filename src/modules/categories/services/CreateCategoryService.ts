@@ -11,7 +11,7 @@ export class CreateCategoryService {
 
   async execute(name: string): Promise<Category> {
     if (!name) {
-      throw new Error('Name is obrigatory!');
+      throw new Error('Name is required!');
     }
 
     const card = await this.categoryRepository.create(name);
