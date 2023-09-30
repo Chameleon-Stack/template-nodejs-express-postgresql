@@ -3,4 +3,5 @@ export interface IUpdateCardServiceDTO {
   title: string;
   description: string;
   id: string;
+  category_ids?: string[];
 }

@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { ICategoryRepository } from '../../categories/repositories/ICategoryRepository';
 import { IUpdateCardServiceDTO } from '../dtos/IUpdateCardServiceDTO';
 import { Card } from '../infra/typeorm/entities/Card';
 import { ICardRepository } from '../repositories/ICardRepository';
@@ -8,6 +9,9 @@ export class UpdateCardService {
   constructor(
     @inject('CardRepository')
     private cardRepository: ICardRepository,
+
+    @inject('CategoryRepository')
+    private categoryRepository: ICategoryRepository,
   ) {}
 
   async execute({
@@ -15,6 +19,7 @@ export class UpdateCardService {
     description,
     title,
     status,
+    category_ids,
   }: IUpdateCardServiceDTO): Promise<Card> {
     if (!id && (!description || !title || !status)) {
       throw new Error('the id or the value was not inserted');
@@ -24,6 +29,14 @@ export class UpdateCardService {
 
     if (!card) {
       throw new Error('the card does not exist');
+    }
+
+    if (category_ids.length > 0) {
+      for (const category_id of category_ids) {
+        const category = await this.categoryRepository.findById(category_id);
+
+        if (category) card.categories.push(category);
+      }
     }
 
     if (description) {
