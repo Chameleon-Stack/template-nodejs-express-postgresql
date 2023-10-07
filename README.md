@@ -30,7 +30,7 @@ Para instalar o container que será rodado no projeto é necessário colocar o s
 docker run --name postgres -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
 ```
 
-## Adicionando valores de conexão ao banco ao .env
+## Adicionando valores de conexão do banco ao .env
 
 Crie um arquivo chamado ".env" na raiz do projeto e adicione as variáveis contidas no arquivo ".env.example" com os valores de conexão que você informou ao criar o container no passo anterior. O arquivo env de acordo com o que container criado ficaria assim:
 
