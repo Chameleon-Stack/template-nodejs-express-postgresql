@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
-import path from 'path';
+import uploadConfig from '../../../../../config/upload';
 import { CreateUserController } from '../controllers/CreateUserController';
 import { DeleteUserController } from '../controllers/DeleteUserController copy';
 import { GetUserByIdController } from '../controllers/GetUserByIdController';
@@ -9,16 +9,7 @@ import { UpdateUserController } from '../controllers/UpdateUserController';
 
 const userRoutes = Router();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}${path.extname(file.originalname)}`);
-  },
-});
-
-const upload = multer({ storage });
+const upload = multer(uploadConfig);
 
 const createUserController = new CreateUserController();
 const deleteUserController = new DeleteUserController();
