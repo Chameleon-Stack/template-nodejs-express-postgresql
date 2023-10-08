@@ -1,8 +1,8 @@
 # CHAMELEON STACK - KAMBAN
 
-## Configuração do Docker
+## Docker Configuration
 
-O primeiro passo é configurar o docker. Para cada sistema operacional é necessário seguir um passo a passo:
+The first step is to configure Docker. For each operating system, you need to follow a step-by-step guide:
 
 - Linux
 
@@ -10,72 +10,73 @@ O primeiro passo é configurar o docker. Para cada sistema operacional é necess
                https://docs.docker.com/desktop/install/linux-install/
 ```
 
-- Windows (Necessário ter o WSL instalado e configurado)
+- Windows (WSL installation and configuration required)
 
 ```
                https://docs.docker.com/desktop/install/windows-install/
 ```
 
-- MAC
+- macOS
 
 ```
                https://docs.docker.com/desktop/install/mac-install/
 ```
 
-## Instalando o container que irá rodar no projeto
+## Installing the Container for Project Execution
 
-Para instalar o container que será rodado no projeto é necessário colocar o seguinte comando no terminal:
+To install the container that will run your project, you need to execute the following command in the terminal:
 
 ```
 docker run --name postgres -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
 ```
 
-## Adicionando valores de conexão do banco ao .env
+## Adding Database Connection Values to .env
 
-Crie um arquivo chamado ".env" na raiz do projeto e adicione as variáveis contidas no arquivo ".env.example" com os valores de conexão que você informou ao criar o container no passo anterior. O arquivo env de acordo com o que container criado ficaria assim:
+Create a file named ".env" in the root of your project and add the variables from the ".env.example" file with the connection values you provided when creating the container in the previous step. The .env file, according to the created container, would look like this:
 
 ```
 POSTGRESQL_PORT=5432
 POSTGRESQL_PASSWORD=mypassword
+NODE_ENV=test
 ```
 
-## Instalando pacotes NodeJs
+## Installing NodeJs Packages
 
-Rode o seguinte comando no projeto:
+Run the following command in your project:
 
 ```
 npm install
 ```
 
-ou
+or
 
 ```
 yarn
 ```
 
-## Rodando migrations
+## Running Migrations
 
-Para adicionar as tabelas do projeto ao seu banco rode o seguinte comando:
+To add the project's tables to your database, run the following command:
 
 ```
 npm run typeorm migration:run -- -d src/shared/infra/typeorm/index.ts
 ```
 
-ou
+or
 
 ```
 yarn typeorm migration:run
 ```
 
-## Iniciando o projeto
+## Starting the Project
 
-Rode o seguinte comando no projeto:
+Run the following command in your project:
 
 ```
 npm run dev
 ```
 
-ou
+or
 
 ```
 yarn dev
