@@ -53,6 +53,20 @@ ou
 yarn
 ```
 
+## Rodando migrations
+
+Para adicionar as tabelas do projeto ao seu banco rode o seguinte comando:
+
+```
+npm run typeorm migration:run
+```
+
+ou
+
+```
+yarn typeorm migration:run
+```
+
 ## Iniciando o projeto
 
 Rode o seguinte comando no projeto:
