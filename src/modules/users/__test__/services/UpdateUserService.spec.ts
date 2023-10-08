@@ -1,9 +1,9 @@
-import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
-import { User } from "../infra/typeorm/entities/User";
-import { IUserRepository } from "../repositories/IUserRepository";
-import { UserRepositoryInMemory } from "../repositories/inMemory/UserRepositoryInMemory";
-import { CreateUserService } from "../services/CreateUserService";
-import { UpdateUserService } from "../services/UpdateUserService";
+import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
+import { User } from "../../infra/typeorm/entities/User";
+import { IUserRepository } from "../../repositories/IUserRepository";
+import { UserRepositoryInMemory } from "../../repositories/inMemory/UserRepositoryInMemory";
+import { CreateUserService } from "../../services/CreateUserService";
+import { UpdateUserService } from "../../services/UpdateUserService";
 
 describe("Update user service", () => {
     let userRepositoryInMemory: IUserRepository;

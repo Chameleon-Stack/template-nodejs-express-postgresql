@@ -1,7 +1,7 @@
-import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
-import { IUserRepository } from "../repositories/IUserRepository";
-import { UserRepositoryInMemory } from "../repositories/inMemory/UserRepositoryInMemory";
-import { CreateUserService } from "../services/CreateUserService";
+import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
+import { IUserRepository } from "../../repositories/IUserRepository";
+import { UserRepositoryInMemory } from "../../repositories/inMemory/UserRepositoryInMemory";
+import { CreateUserService } from "../../services/CreateUserService";
 
 describe("Create user service", () => {
     let userRepositoryInMemory: IUserRepository;

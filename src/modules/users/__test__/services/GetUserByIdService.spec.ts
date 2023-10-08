@@ -1,7 +1,7 @@
-import { User } from "../infra/typeorm/entities/User";
-import { IUserRepository } from "../repositories/IUserRepository";
-import { UserRepositoryInMemory } from "../repositories/inMemory/UserRepositoryInMemory";
-import { GetUserByIdService } from "../services/GetUserByIdService";
+import { User } from "../../infra/typeorm/entities/User";
+import { IUserRepository } from "../../repositories/IUserRepository";
+import { UserRepositoryInMemory } from "../../repositories/inMemory/UserRepositoryInMemory";
+import { GetUserByIdService } from "../../services/GetUserByIdService";
 
 describe("Get user by id service", () => {
     let userRepositoryInMemory: IUserRepository;

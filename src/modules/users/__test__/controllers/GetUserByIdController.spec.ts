@@ -1,9 +1,9 @@
 
 import "reflect-metadata";
 import request from 'supertest';
-import { app } from '../../../shared/infra/http/app';
-import { User } from '../infra/typeorm/entities/User';
-import { GetUserByIdService } from "../services/GetUserByIdService";
+import { app } from '../../../../shared/infra/http/app';
+import { User } from '../../infra/typeorm/entities/User';
+import { GetUserByIdService } from "../../services/GetUserByIdService";
 
 jest.mock('../services/GetUserByIdService');
 const getUserByIdServiceMock = GetUserByIdService as jest.MockedClass<

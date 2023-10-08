@@ -1,4 +1,4 @@
-# CHAMELEON STACK - KAMBAN
+# CHAMELEON STACK - KANBAN
 
 ## Configuração do Docker
 

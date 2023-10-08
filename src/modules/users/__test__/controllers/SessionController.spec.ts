@@ -1,9 +1,9 @@
 
 import "reflect-metadata";
 import request from 'supertest';
-import { app } from '../../../shared/infra/http/app';
-import { User } from '../infra/typeorm/entities/User';
-import { SessionService } from "../services/SessionService";
+import { app } from '../../../../shared/infra/http/app';
+import { User } from '../../infra/typeorm/entities/User';
+import { SessionService } from "../../services/SessionService";
 
 jest.mock('../services/SessionService');
 const sessionServiceMock = SessionService as jest.MockedClass<
