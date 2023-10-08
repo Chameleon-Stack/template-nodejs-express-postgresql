@@ -1,3 +1,4 @@
+import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import { v4 as uuidV4 } from 'uuid';
@@ -23,7 +24,9 @@ export class SessionService {
       throw new Error('Incorrect email/password');
     }
 
-    if (password !== user.password) {
+    const passwordMatch = await compare(password, user.password);
+
+    if (!passwordMatch) {
       throw new Error('Incorrect email/password');
     }
 

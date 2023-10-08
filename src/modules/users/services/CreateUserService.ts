@@ -1,3 +1,4 @@
+import { genSaltSync, hashSync } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 import { ICreateUserDTO } from '../dtos/ICreateUserDTO';
 import { User } from '../infra/typeorm/entities/User';
@@ -26,10 +27,13 @@ export class CreateUserService {
       throw new Error('User already exists!');
     }
 
+    const salt = genSaltSync(8); 
+    const hash = hashSync(password, salt);
+
     const user = await this.userRepository.create({
       name,
       email,
-      password,
+      password:hash,
       photo,
     });
 
