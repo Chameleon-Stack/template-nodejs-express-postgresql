@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe';
-import { ICreateUserDTO } from '../dtos/ICreateUserDTO';
-import { User } from '../infra/typeorm/entities/User';
-import { IUserRepository } from '../repositories/IUserRepository';
+import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
+import { User } from '../../infra/typeorm/entities/User';
+import { IUserRepository } from '../../repositories/IUserRepository';
 
 @injectable()
-export class CreateUserService {
+export class CreateUserUseCase {
   constructor(
     @inject('UserRepository')
     private userRepository: IUserRepository,

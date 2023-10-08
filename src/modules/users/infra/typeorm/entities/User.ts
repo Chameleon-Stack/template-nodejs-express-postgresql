@@ -1,4 +1,3 @@
-import { Card } from '@modules/cards/infra/typeorm/entities/Card';
 import {
   Column,
   CreateDateColumn,
@@ -7,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Card } from '../../../../cards/infra/typeorm/entities/Card';
 
 @Entity('User')
 export class User {
