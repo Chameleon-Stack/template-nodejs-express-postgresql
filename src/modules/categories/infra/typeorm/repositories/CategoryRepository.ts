@@ -1,4 +1,5 @@
-import { Repository, getRepository } from 'typeorm';
+import { Repository } from 'typeorm';
+import { dataSource } from '../../../../../shared/infra/typeorm';
 import { ICategoryRepository } from '../../../repositories/ICategoryRepository';
 import { Category } from '../entities/Category';
 
@@ -6,7 +7,7 @@ export class CategoryRepository implements ICategoryRepository {
   private ormRepository: Repository<Category>;
 
   constructor() {
-    this.ormRepository = getRepository(Category);
+    this.ormRepository = dataSource.getRepository(Category);
   }
 
   async create(name: string): Promise<Category> {

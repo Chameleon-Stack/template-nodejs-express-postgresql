@@ -1,4 +1,5 @@
-import { getRepository, Repository } from 'typeorm';
+import { dataSource } from '@shared/infra/typeorm';
+import { Repository } from 'typeorm';
 import { ICreateCardDTO } from '../../../dtos/ICreateCardDTO';
 import { IGetAllCardsDTO } from '../../../dtos/IGetAllCardsDTO';
 import { ICardRepository } from '../../../repositories/ICardRepository';
@@ -8,7 +9,7 @@ export class CardRepository implements ICardRepository {
   private ormRepository: Repository<Card>;
 
   constructor() {
-    this.ormRepository = getRepository(Card);
+    this.ormRepository = dataSource.getRepository(Card);
   }
 
   async create(new_card: ICreateCardDTO): Promise<Card> {

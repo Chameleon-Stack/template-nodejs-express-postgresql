@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -31,10 +32,24 @@ export class Card {
   @UpdateDateColumn()
   updated_at: Date;
 
+  @Column('uuid')
+  user_id: string;
+
   @ManyToOne(() => User, (user) => user.cards)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @ManyToMany(() => Category)
-  @JoinTable()
+  @ManyToMany(() => Category, category => category.cards)
+  @JoinTable({
+      name: 'CardCategory',
+      joinColumn: {
+          name: 'card_id',
+          referencedColumnName: 'id',
+      },
+      inverseJoinColumn: {
+          name: 'category_id',
+          referencedColumnName: 'id',
+      },
+  })
   categories: Category[];
 }

@@ -1,13 +1,14 @@
 import { ICreateUserDTO } from '@modules/users/dtos/ICreateUserDTO';
 import { IUserRepository } from '@modules/users/repositories/IUserRepository';
-import { getRepository, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
+import { dataSource } from '../../../../../shared/infra/typeorm';
 import { User } from '../entities/User';
 
 export class UserRepository implements IUserRepository {
   private ormRepository: Repository<User>;
 
   constructor() {
-    this.ormRepository = getRepository(User);
+    this.ormRepository = dataSource.getRepository(User);
   }
 
   async create(new_user: ICreateUserDTO): Promise<User> {

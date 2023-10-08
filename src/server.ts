@@ -1,11 +1,11 @@
 import 'reflect-metadata';
-import './shared/infra/http/container';
 import { app } from './shared/infra/http/app';
-import { createConnection } from 'typeorm';
+import './shared/infra/http/container';
+import { dataSource } from './shared/infra/typeorm';
 
 
-createConnection().then(() => {
+dataSource.initialize().then(() => {
   app.listen(3333, () => {
-    console.log('Server started on port 3333.');
+    return console.log('Server started on port 3333.');
   });
 });

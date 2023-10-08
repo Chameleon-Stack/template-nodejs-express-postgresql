@@ -1,4 +1,4 @@
-# CHAMALEON STACK - KAMBAN
+# CHAMELEON STACK - KAMBAN
 
 ## Configuração do Docker
 
@@ -58,7 +58,7 @@ yarn
 Para adicionar as tabelas do projeto ao seu banco rode o seguinte comando:
 
 ```
-npm run typeorm migration:run
+npm run typeorm migration:run -- -d src/shared/infra/typeorm/index.ts
 ```
 
 ou
