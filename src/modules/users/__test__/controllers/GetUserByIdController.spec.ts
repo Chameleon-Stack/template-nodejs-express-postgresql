@@ -5,7 +5,7 @@ import { app } from '../../../../shared/infra/http/app';
 import { User } from '../../infra/typeorm/entities/User';
 import { GetUserByIdService } from "../../services/GetUserByIdService";
 
-jest.mock('../services/GetUserByIdService');
+jest.mock('../../services/GetUserByIdService');
 const getUserByIdServiceMock = GetUserByIdService as jest.MockedClass<
   typeof GetUserByIdService
 >;

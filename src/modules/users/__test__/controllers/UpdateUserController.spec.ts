@@ -5,7 +5,7 @@ import { app } from '../../../../shared/infra/http/app';
 import { User } from '../../infra/typeorm/entities/User';
 import { UpdateUserService } from "../../services/UpdateUserService";
 
-jest.mock('../services/UpdateUserService');
+jest.mock('../../services/UpdateUserService');
 const updateUserServiceMock = UpdateUserService as jest.MockedClass<
   typeof UpdateUserService
 >;

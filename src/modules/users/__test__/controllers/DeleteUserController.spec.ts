@@ -4,7 +4,7 @@ import request from 'supertest';
 import { app } from '../../../../shared/infra/http/app';
 import { DeleteUserService } from "../../services/DeleteUserService";
 
-jest.mock('../services/DeleteUserService');
+jest.mock('../../services/DeleteUserService');
 const deleteUserServiceMock = DeleteUserService as jest.MockedClass<
   typeof DeleteUserService
 >;

@@ -31,7 +31,7 @@ describe('User repository test', () => {
       expect(user.name).toEqual(name);
     });
   
-    it('Should be able to delete driver', async () => {
+    it('Should be able to delete user', async () => {
         const name = 'test 1';
         const email = 'test1@test';
         const password = '1234';
@@ -42,12 +42,12 @@ describe('User repository test', () => {
   
       await userRepository.delete(user);
   
-      const foundDriver = await userRepository.findById(user.id);
+      const foundUser = await userRepository.findById(user.id);
   
-      expect(foundDriver).toBe(undefined);
+      expect(foundUser).toBe(undefined);
     });
   
-    it('Should be able to update driver', async () => {
+    it('Should be able to update user', async () => {
         const name = 'test 2';
         const email = 'test2@test';
         const password = '1234';
