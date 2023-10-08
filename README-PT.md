@@ -81,3 +81,7 @@ ou
 ```
 yarn dev
 ```
+
+O projeto irá rodar na seguinte URL:
+
+        http://localhost:3333
