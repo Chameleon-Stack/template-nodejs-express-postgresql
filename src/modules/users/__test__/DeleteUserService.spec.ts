@@ -4,7 +4,7 @@ import { IUserRepository } from "../repositories/IUserRepository";
 import { UserRepositoryInMemory } from "../repositories/inMemory/UserRepositoryInMemory";
 import { DeleteUserService } from '../services/DeleteUserService';
 
-describe("Delete user use case", () => {
+describe("Delete user service", () => {
     let userRepositoryInMemory: IUserRepository;
     let deleteUserUseCase: DeleteUserService;
   
