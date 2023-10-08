@@ -10,7 +10,6 @@ export class GetUserByIdService {
   ) {}
 
   async execute(id: string): Promise<User> {
-    console.log(id)
     return this.usersRepository.findById(id);
   }
 }

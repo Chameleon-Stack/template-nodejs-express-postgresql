@@ -15,7 +15,7 @@ describe("Get user by id service", () => {
         sessionService = new SessionService(userRepositoryInMemory);
     });
   
-    it("should be able to get user by id", async () => {
+    it("should be able to authenticate", async () => {
         const user: User = {
             email: "example@example.com",
             password: "1234",
@@ -28,5 +28,25 @@ describe("Get user by id service", () => {
     
         expect(session.user.id).toEqual(userCreated.id);
         expect(session).toHaveProperty('token');
+    });
+
+    it("should not be able to authenticate with email does not exists", async () => {    
+        await expect(
+            sessionService.execute("example@example.com","1234")
+        ).rejects.toEqual(new Error("Incorrect email/password"));
+    });
+
+    it("should not be able to authenticate with password incorrect", async () => {
+        const user: User = {
+            email: "example@example.com",
+            password: "1234",
+            name: "User test",
+        } as User;
+
+        await createUserService.execute(user);
+
+        await expect(
+            sessionService.execute(user.email, '')
+        ).rejects.toEqual(new Error("Incorrect email/password"));
     });
 });
