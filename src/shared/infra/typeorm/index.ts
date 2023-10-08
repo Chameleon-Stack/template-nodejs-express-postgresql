@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 
 export const dataSource = new DataSource({
@@ -8,7 +9,7 @@ export const dataSource = new DataSource({
   port: Number(process.env.POSTGRESQL_PORT),
   username: 'postgres',
   password: process.env.POSTGRESQL_PASSWORD,
-  database: 'chameleon',
+  database: process.env.NODE_ENV === 'test' ? 'test' : 'chameleon',
   synchronize: false,
   logging: false,
   migrationsTableName: 'migration',

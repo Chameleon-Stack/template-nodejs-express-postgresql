@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import multer from 'multer';
 import uploadConfig from '../../../../../config/upload';
-import { CreateUserController } from '../../../useCase/CreateUser/CreateUserController';
-import { DeleteUserController } from '../controllers/DeleteUserController copy';
+import { CreateUserController } from '../controllers/CreateUserController';
+import { DeleteUserController } from '../controllers/DeleteUserController';
 import { GetUserByIdController } from '../controllers/GetUserByIdController';
 import { SessionController } from '../controllers/SessionController';
 import { UpdateUserController } from '../controllers/UpdateUserController';

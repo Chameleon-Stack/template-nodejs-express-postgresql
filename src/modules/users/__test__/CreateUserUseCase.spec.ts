@@ -1,16 +1,15 @@
-import 'reflect-metadata';
-import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { IUserRepository } from "../../repositories/IUserRepository";
-import { UserRepositoryInMemory } from "../../repositories/inMemory/UserRepositoryInMemory";
-import { CreateUserUseCase } from "./CreateUserUseCase";
+import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
+import { IUserRepository } from "../repositories/IUserRepository";
+import { UserRepositoryInMemory } from "../repositories/inMemory/UserRepositoryInMemory";
+import { CreateUserService } from "../services/CreateUserService";
 
 describe("Create user use case", () => {
     let userRepositoryInMemory: IUserRepository;
-    let createUserUseCase: CreateUserUseCase;
+    let createUserService: CreateUserService;
   
     beforeEach(() => {
         userRepositoryInMemory = new UserRepositoryInMemory();
-        createUserUseCase = new CreateUserUseCase(userRepositoryInMemory);
+        createUserService = new CreateUserService(userRepositoryInMemory);
     });
   
     it("should be able to create user", async () => {
@@ -20,7 +19,7 @@ describe("Create user use case", () => {
             name: "User test",
         };
     
-        const userCreated = await createUserUseCase.execute(user);
+        const userCreated = await createUserService.execute(user);
     
         expect(userCreated).toHaveProperty("id");
         expect(userCreated.name).toEqual(user.name);
@@ -29,7 +28,7 @@ describe("Create user use case", () => {
   
     it("should be able to create user with params missing", async () => {
         await expect(
-            createUserUseCase.execute({
+            createUserService.execute({
                 name: null,
                 email: "false@email.com",
                 password: "1234",
@@ -44,10 +43,10 @@ describe("Create user use case", () => {
             name: "User test",
         };
     
-        await createUserUseCase.execute(user);
+        await createUserService.execute(user);
 
         await expect(
-            createUserUseCase.execute(user)
+            createUserService.execute(user)
         ).rejects.toEqual(new Error("User already exists!"));
     });
 });
