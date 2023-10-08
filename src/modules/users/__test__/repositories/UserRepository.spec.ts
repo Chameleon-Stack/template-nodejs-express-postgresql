@@ -32,70 +32,51 @@ describe('User repository test', () => {
     });
   
     it('Should be able to delete driver', async () => {
-      const name = 'XXX 1';
+        const name = 'test 1';
+        const email = 'test1@test';
+        const password = '1234';
   
-      const driver = ormDriverRepository.create({ name });
+      const user = await userRepository.create({ name ,email,password});
   
-      await ormDriverRepository.save(driver);
+      await ormUserRepository.save(user);
   
-      await driverRepositoryRepository.delete(driver.id);
+      await userRepository.delete(user);
   
-      const foundDriver = await driverRepositoryRepository.findById(driver.id);
+      const foundDriver = await userRepository.findById(user.id);
   
       expect(foundDriver).toBe(undefined);
     });
   
     it('Should be able to update driver', async () => {
-      const name = 'XXX 2';
+        const name = 'test 2';
+        const email = 'test2@test';
+        const password = '1234';
   
-      const driver = ormDriverRepository.create({ name });
+      const user = await userRepository.create({ name ,email,password});
   
-      await ormDriverRepository.save(driver);
+      await ormUserRepository.save(user);
   
-      driver.name = 'YYY 2';
+      user.name = 'test update 2';
   
-      const updateDriver = await driverRepositoryRepository.update(driver);
+      const updateUser = await userRepository.update(user);
   
-      expect(updateDriver).toBeInstanceOf(Driver);
-      expect(driver.name).toEqual('YYY 2');
+      expect(updateUser).toBeInstanceOf(User);
+      expect(user.name).toEqual('test update 2');
     });
   
-    it('Should be able to find all driver', async () => {
-      const name = 'XXX 3';
-  
-      const driver = ormDriverRepository.create({ name });
-  
-      await ormDriverRepository.save(driver);
-  
-      const drivers = await driverRepositoryRepository.findAll();
-  
-      expect(drivers[0]).toBeInstanceOf(Driver);
-      expect(drivers).toHaveLength(1);
-    });
-  
-    it('Should be able to find by name', async () => {
-      const name = 'XXX 4';
-  
-      const driver = ormDriverRepository.create({ name });
-  
-      await ormDriverRepository.save(driver);
-  
-      const drivers = await driverRepositoryRepository.findByName(name);
-  
-      expect(drivers[0]).toBeInstanceOf(Driver);
-      expect(drivers).toHaveLength(1);
-    });
   
     it('Should be able to find by ID', async () => {
-      const name = 'XXX 4';
+        const name = 'test 1';
+        const email = 'test1@test';
+        const password = '1234';
   
-      const driver = ormDriverRepository.create({ name });
+      const user = await userRepository.create({ name ,email,password});
   
-      await ormDriverRepository.save(driver);
+      await ormUserRepository.save(user);
   
-      const foundDriver = await driverRepositoryRepository.findById(driver.id);
+      const foundUser = await userRepository.findById(user.id);
   
-      expect(foundDriver).toBeInstanceOf(Driver);
-      expect(foundDriver.id).toEqual(driver.id);
+      expect(foundUser).toBeInstanceOf(User);
+      expect(foundUser.id).toEqual(user.id);
     });
   });
