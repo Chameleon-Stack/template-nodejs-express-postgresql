@@ -2,8 +2,6 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   setupFiles: ['dotenv/config'],
-  test: 'jest --coverage',
-  'test:watch': 'jest --watch',
   clearMocks: true,
   collectCoverage: true,
   collectCoverageFrom: [
