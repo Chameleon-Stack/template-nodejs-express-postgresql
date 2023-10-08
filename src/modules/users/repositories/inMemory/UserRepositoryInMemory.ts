@@ -26,7 +26,17 @@ export class UserRepositoryInMemory implements IUserRepository{
         return user
     }
     async update(user: User): Promise<User> {
-        throw new Error("Method not implemented.");
+        const oldUser = this.users.find(
+            foundUser => foundUser.id === user.id,
+          );
+      
+        if (oldUser) {
+            Object.assign(oldUser, user);
+        } else {
+            this.users.push(user);
+        }
+    
+        return user;
     }
     async findById(id: string): Promise<User> {
         return this.users.find(user => user.id === id)
