@@ -85,3 +85,13 @@ yarn dev
 The project will run at the following URL:
 
         http://localhost:3333
+
+## Running the Tests
+
+To run the project's tests, you need to add a test database to your project with the name "test" and then change the NODE_ENV variable from dev to test. Your .env file should look like this:
+
+```
+POSTGRESQL_PORT=5432
+POSTGRESQL_PASSWORD=mypassword
+NODE_ENV=test
+```

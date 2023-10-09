@@ -37,7 +37,7 @@ Crie um arquivo chamado ".env" na raiz do projeto e adicione as variáveis conti
 ```
 POSTGRESQL_PORT=5432
 POSTGRESQL_PASSWORD=mypassword
-NODE_ENV=test
+NODE_ENV=dev
 ```
 
 ## Instalando pacotes NodeJs
@@ -85,3 +85,13 @@ yarn dev
 O projeto irá rodar na seguinte URL:
 
         http://localhost:3333
+
+## Rodando os testes
+
+Para rodar os testes do projeto é necessário adicionar um banco de testes em seu projeto com o nome "test" e então alterar a variável NODE_ENV de dev para test, ficando dessa forma o arquivo .env:
+
+```
+POSTGRESQL_PORT=5432
+POSTGRESQL_PASSWORD=mypassword
+NODE_ENV=test
+```
