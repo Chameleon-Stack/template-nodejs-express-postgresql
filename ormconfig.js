@@ -3,7 +3,7 @@ module.exports = [
     name: 'default',
     type: 'postgres',
     host: 'localhost',
-    port: Number(process.env.POSTGRESQL_PORT),
+    port: process.env.POSTGRESQL_PORT,
     username: 'postgres',
     password: process.env.POSTGRESQL_PASSWORD,
     database: process.env.NODE_ENV === 'test' ? 'test' : 'chameleon',

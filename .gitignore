@@ -1,12 +1,15 @@
-.idea/
-.vscode/
-node_modules/
-build/
-temp/
-.env
+node_modules
 coverage
-ormconfig.json
 dist
+tmp/*
+!tmp/.gitkeep
+!tmp/user-icon.png
 
-uploads/*
-!uploads/.gitkeep
+.DS_Store
+.env
+
+yarn.lock
+yarn-error.log
+
+logs/*
+!logs/.gitkeep

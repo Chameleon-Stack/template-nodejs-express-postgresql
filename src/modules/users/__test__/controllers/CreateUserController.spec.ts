@@ -1,5 +1,3 @@
-
-import "reflect-metadata";
 import request from 'supertest';
 import { app } from '../../../../shared/infra/http/app';
 import { User } from '../../infra/typeorm/entities/User';
@@ -16,16 +14,16 @@ describe('Create user controller test', () => {
   });
 
   it('Should be able to create a user', async () => {
-    createUserServiceMock.prototype.execute.mockResolvedValueOnce(
+    await createUserServiceMock.prototype.execute.mockResolvedValueOnce(
       new User(),
     );
 
     const response = await request(app).post(`/user`).send({
-        email: "example@example.com",
-        password: "1234",
-        name: "User test",
+      email: 'example@example.com',
+      password: '1234',
+      name: 'User test',
     });
-    
+
     expect(response.status).toEqual(201);
   });
 });

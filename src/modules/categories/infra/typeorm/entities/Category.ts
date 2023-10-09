@@ -4,7 +4,7 @@ import {
   Entity,
   ManyToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from 'typeorm';
 import { Card } from '../../../../cards/infra/typeorm/entities/Card';
 
@@ -21,7 +21,6 @@ export class Category {
 
   @Column()
   name: string;
-
 
   @ManyToMany(() => Card, card => card.categories)
   cards: Card[];

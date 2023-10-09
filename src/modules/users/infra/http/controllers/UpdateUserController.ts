@@ -9,7 +9,7 @@ export class UpdateUserController {
     const { name, email, password, new_password } = request.body;
 
     const photo = request?.file?.filename;
-    const id = request.params.id;
+    const { id } = request.params;
 
     const user = await updateUserUseCase.execute({
       id,

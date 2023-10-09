@@ -1,8 +1,6 @@
-
-import "reflect-metadata";
 import request from 'supertest';
 import { app } from '../../../../shared/infra/http/app';
-import { DeleteUserService } from "../../services/DeleteUserService";
+import { DeleteUserService } from '../../services/DeleteUserService';
 
 jest.mock('../../services/DeleteUserService');
 const deleteUserServiceMock = DeleteUserService as jest.MockedClass<
@@ -18,7 +16,7 @@ describe('Delete user controller test', () => {
     deleteUserServiceMock.prototype.execute.mockResolvedValueOnce();
 
     const response = await request(app).delete(`/user/:uuid`);
-    
+
     expect(response.status).toEqual(204);
   });
 });

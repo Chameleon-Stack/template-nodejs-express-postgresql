@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { dataSource } from '../../shared/infra/typeorm';
 
 beforeAll(async () => {

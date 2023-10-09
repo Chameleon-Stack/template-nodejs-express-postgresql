@@ -27,13 +27,13 @@ export class CreateUserService {
       throw new Error('User already exists!');
     }
 
-    const salt = genSaltSync(8); 
+    const salt = genSaltSync(8);
     const hash = hashSync(password, salt);
 
     const user = await this.userRepository.create({
       name,
       email,
-      password:hash,
+      password: hash,
       photo,
     });
 
