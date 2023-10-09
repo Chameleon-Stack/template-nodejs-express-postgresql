@@ -1,12 +1,22 @@
 {
-  "name": "automobiles",
+  "name": "template-nodejs-express-postgresql",
   "version": "1.0.0",
+  "description": "Tempale NodeJs(TypeScript) Express Postgresql",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --require dotenv/config --respawn src/server.ts",
     "test": "jest --runInBand --detectOpenHandles --forceExit",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d src/shared/infra/typeorm/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ibsiany/template-nodejs-express-postgresql.git"
+  },
+  "keywords": [],
+  "author": "Ibsiany",
+  "bugs": {
+    "url": "https://github.com/Ibsiany/template-nodejs-express-postgresql/issues"
   },
   "dependencies": {
     "@nestjs/typeorm": "^9.0.1",
