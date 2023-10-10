@@ -16,7 +16,7 @@ Acesse o seguinte link e baixe a versão LTS
     https://nodejs.org/en
 ```
 
-Após isso é só clicar duas vezes no arquivo que foi baixado e executar o seguinte comando para verificar a versão:
+Após isso é só clicar duas vezes no arquivo que foi baixado e instalar o Node clicando em next até sua instalação.Execute o seguinte comando para verificar a versão:
 
 ```
     node --version

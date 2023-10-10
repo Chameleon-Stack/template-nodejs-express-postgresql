@@ -16,7 +16,7 @@ Access the following link and download the LTS version
     https://nodejs.org/en
 ```
 
-After that, double click on the downloaded file and run the following command to check the version:
+After that, just double-click on the file that was downloaded and install Node by clicking next until it is installed. Run the following command to check the version:
 
 ```
     node --version
