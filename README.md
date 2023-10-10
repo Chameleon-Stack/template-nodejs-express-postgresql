@@ -1,8 +1,36 @@
 # CHAMELEON STACK - KANBAN
 
-## Docker Configuration
+### 📋 PREREQUISITES
 
-The first step is to configure Docker. For each operating system, you need to follow a step-by-step guide:
+- Docker
+- NodeJs
+- NPM
+
+## 🔧 INSTALLATION PREREQUISITES
+
+### Installing NodeJS
+
+Access the following link and download the LTS version
+
+```
+    https://nodejs.org/en
+```
+
+After that, double click on the downloaded file and run the following command to check the version:
+
+```
+    node --version
+```
+
+Also, check the installed NPM version:
+
+```
+    npm --version
+```
+
+### Installing Docker
+
+The first step is to set up Docker. For each operating system, you need to follow a step-by-step process:
 
 - Linux
 
@@ -10,7 +38,7 @@ The first step is to configure Docker. For each operating system, you need to fo
                https://docs.docker.com/desktop/install/linux-install/
 ```
 
-- Windows (WSL installation and configuration required)
+- Windows (WSL installation and configuration are required)
 
 ```
                https://docs.docker.com/desktop/install/windows-install/
@@ -22,27 +50,29 @@ The first step is to configure Docker. For each operating system, you need to fo
                https://docs.docker.com/desktop/install/mac-install/
 ```
 
-## Installing the Container for Project Execution
+### Installing the Container for the Project
 
-To install the container that will run your project, you need to execute the following command in the terminal:
+To install the container that will run in the project, you need to enter the following command in the terminal:
 
 ```
 docker run --name postgres -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
 ```
 
-## Adding Database Connection Values to .env
+## ⚙️ CONFIGURING THE PROJECT
 
-Create a file named ".env" in the root of your project and add the variables from the ".env.example" file with the connection values you provided when creating the container in the previous step. The .env file, according to the created container, would look like this:
+### Adding Database Connection Values to .env
+
+Create a file named ".env" at the root of the project and add the variables from the ".env.example" file with the connection values you provided when creating the container in the previous step. The .env file, according to the container created, would look like this:
 
 ```
 POSTGRESQL_PORT=5432
 POSTGRESQL_PASSWORD=mypassword
-NODE_ENV=test
+NODE_ENV=dev
 ```
 
-## Installing NodeJs Packages
+### Installing Node.js Packages
 
-Run the following command in your project:
+Run the following command in the project:
 
 ```
 npm install
@@ -54,7 +84,7 @@ or
 yarn
 ```
 
-## Running Migrations
+### Running Migrations
 
 To add the project's tables to your database, run the following command:
 
@@ -68,9 +98,9 @@ or
 yarn typeorm migration:run
 ```
 
-## Starting the Project
+### Starting the Project
 
-Run the following command in your project:
+Run the following command in the project:
 
 ```
 npm run dev
@@ -86,7 +116,9 @@ The project will run at the following URL:
 
         http://localhost:3333
 
-## Running the Tests
+### 🚀 TESTS
+
+## Running Tests
 
 To run the project's tests, you need to add a test database to your project with the name "test" and then change the NODE_ENV variable from dev to test. Your .env file should look like this:
 
@@ -94,4 +126,16 @@ To run the project's tests, you need to add a test database to your project with
 POSTGRESQL_PORT=5432
 POSTGRESQL_PASSWORD=mypassword
 NODE_ENV=test
+```
+
+Execute the command:
+
+```
+npm run test
+```
+
+or
+
+```
+yarn test
 ```
