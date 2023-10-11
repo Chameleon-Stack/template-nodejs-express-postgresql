@@ -35,21 +35,21 @@ export class Card {
   @Column('uuid')
   user_id: string;
 
-  @ManyToOne(() => User, (user) => user.cards)
+  @ManyToOne(() => User, user => user.cards)
   @JoinColumn({ name: 'user_id' })
   user: User;
 
   @ManyToMany(() => Category, category => category.cards)
   @JoinTable({
-      name: 'CardCategory',
-      joinColumn: {
-          name: 'card_id',
-          referencedColumnName: 'id',
-      },
-      inverseJoinColumn: {
-          name: 'category_id',
-          referencedColumnName: 'id',
-      },
+    name: 'CardCategory',
+    joinColumn: {
+      name: 'card_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'category_id',
+      referencedColumnName: 'id',
+    },
   })
   categories: Category[];
 }

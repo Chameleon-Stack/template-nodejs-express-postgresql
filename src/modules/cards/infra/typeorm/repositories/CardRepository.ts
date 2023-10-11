@@ -33,8 +33,12 @@ export class CardRepository implements ICardRepository {
     description,
     status,
     title,
+    user_id,
   }: IGetAllCardsDTO): Promise<Card[]> {
-    const query = this.ormRepository.createQueryBuilder('Cards');
+    const query = this.ormRepository
+      .createQueryBuilder('cards')
+      .innerJoin('cards.user', 'user', 'user.id = cards.user_id')
+      .where(`user.id = '${user_id}'`);
 
     if (id) {
       query.andWhere('cards.id = :id', { id });
