@@ -17,10 +17,10 @@ export class CategoryRepository implements ICategoryRepository {
   }
 
   async findAll(name?: string): Promise<Category[]> {
-    const query = this.ormRepository.createQueryBuilder('Category');
+    const query = this.ormRepository.createQueryBuilder('category');
 
     if (name) {
-      query.andWhere(`lower(cards.name) ilike '%${name}%'`);
+      query.andWhere(`lower(category.name) ilike '%${name}%'`);
     }
 
     return query.getMany();

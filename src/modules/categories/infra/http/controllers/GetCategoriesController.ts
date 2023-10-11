@@ -6,7 +6,7 @@ export class GetCategoriesController {
   public async handle(request: Request, response: Response): Promise<Response> {
     const getCategoriesService = container.resolve(GetCategoriesService);
 
-    const query = request.query;
+    const { query } = request;
 
     const categories = await getCategoriesService.execute(query);
 
