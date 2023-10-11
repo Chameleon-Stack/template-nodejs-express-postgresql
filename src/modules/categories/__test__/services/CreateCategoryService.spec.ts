@@ -16,9 +16,9 @@ describe('Create category service', () => {
   it('should be able to create category', async () => {
     const name = 'Category test';
 
-    const userCreated = await createCategoryService.execute(name);
+    const categoryCreated = await createCategoryService.execute(name);
 
-    expect(userCreated).toHaveProperty('id');
+    expect(categoryCreated).toHaveProperty('id');
   });
 
   it('should be able to create category with params missing', async () => {

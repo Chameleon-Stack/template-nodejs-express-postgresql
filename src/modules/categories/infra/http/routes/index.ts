@@ -10,7 +10,7 @@ const deleteCtegoryController = new DeleteCtegoryController();
 const getCategoriesController = new GetCategoriesController();
 
 categoryRoutes.post('/', createCategoryController.handle);
-categoryRoutes.delete('/delete/:id', deleteCtegoryController.handle);
+categoryRoutes.delete('/:id', deleteCtegoryController.handle);
 categoryRoutes.get('/', getCategoriesController.handle);
 
 export default categoryRoutes;
