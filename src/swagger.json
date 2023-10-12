@@ -266,7 +266,9 @@
                 "application/json": {
                   "schema": {
                     "type": "array",
-                    "$ref":"#/components/schemas/Category"
+                    "items":{
+                      "$ref":"#/components/schemas/Category"
+                    }
                   }
                 }
             }
@@ -432,7 +434,9 @@
                 "application/json": {
                   "schema": {
                     "type": "array",
-                    "$ref":"#/components/schemas/Card"
+                    "items":{
+                      "$ref":"#/components/schemas/Card"
+                    }
                   }
                 }
             }
