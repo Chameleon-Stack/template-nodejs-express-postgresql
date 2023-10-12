@@ -193,6 +193,14 @@
       "post": {
         "sumary": "Create new category",
         "description": "Create a new category",
+        "parameters":[
+          {
+						"in":"path",
+						"name":"user_id",
+						"required":true,
+            "description":"User id"
+					}
+        ],
         "requestBody":{
           "content":{
             "application/json":{
@@ -247,7 +255,7 @@
         "parameters":[
           {
 						"in":"path",
-						"name":"id",
+						"name":"user_id",
 						"required":true
 					}
         ],
