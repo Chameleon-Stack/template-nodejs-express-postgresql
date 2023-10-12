@@ -18,11 +18,16 @@ app.use(express.json() as RequestHandler);
 app.use(routes);
 
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
-  console.log(err);
+  const { code, message, errors, documentsKey } = <any>err;
 
-  return response
-    .status(500)
-    .json({ message: 'Internal server error!', status: 500 });
+  const apiError = {
+    code: code || 500,
+    message,
+    documentsKey,
+    errors,
+  };
+
+  return response.status(apiError.code || 500).json(apiError);
 });
 
 export { app };

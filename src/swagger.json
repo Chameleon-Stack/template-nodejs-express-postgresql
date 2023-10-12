@@ -7,6 +7,112 @@
   },
   "paths": {
     "/user": {
+      "post": {
+        "sumary": "Create new user",
+        "description": "Create a new user",
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "name":{
+                    "type": "string",
+                    "description": "Name of the user"
+                  },
+                  "email":{
+                    "type": "string",
+                    "description": "Email of the user"
+                  },
+                  "password":{
+                    "type": "string",
+                    "description": "Password of the user"
+                  }
+                },
+                "example":{
+                  "name":"Test user",
+                  "email":"example@example.com",
+                  "password":"********"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The user was sucessfuly created.",
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref":"#/components/schemas/User"
+                  }
+                }
+              }
+          }
+        }
+      },
+      "delete": {
+        "sumary": "Delete user",
+        "description": "Delete an existing user",
+        "parameters":[
+          {
+						"in":"path",
+						"name":"id",
+						"required":true
+					}
+        ],
+        "responses": {
+          "204": {
+            "description": "The user was sucessfuly deleted"
+          }
+        }
+      },
+      "patch": {
+        "sumary": "Update user",
+        "description": "Update an existing user",
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "name":{
+                    "type": "string",
+                    "description": "Name of the user"
+                  },
+                  "email":{
+                    "type": "string",
+                    "description": "Email of the user"
+                  },
+                  "password":{
+                    "type": "string",
+                    "description": "Password of the user"
+                  }
+                },
+                "example":{
+                  "name":"Test user",
+                  "email":"example@example.com",
+                  "password":"********"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The user was sucessfuly created.",
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref":"#/components/schemas/User"
+                  }
+                }
+              }
+          }
+        }
+      },
       "get": {
         "sumary": "Get user by id",
         "description": "Get user by id",
@@ -28,6 +134,57 @@
                   }
                 }
             }
+          }
+        }
+      }
+    },
+    "/user/session": {
+      "post":{
+        "sumary": "Session user",
+        "description": "Session user",
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "email":{
+                    "type": "string",
+                    "description": "Email of the user"
+                  },
+                  "password":{
+                    "type": "string",
+                    "description": "Password of the user"
+                  }
+                },
+                "example":{
+                  "email":"example@example.com",
+                  "password":"********"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The user was sucessfuly created.",
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties":{
+                      "user": {
+                        "$ref": "#/components/schemas/User"
+                      },
+                      "token": {
+                        "type": "string",
+                        "example": "ScgNT#gR!qr5!ys8",
+                        "description": "Token session user"
+                      }
+                    }
+                  }
+                }
+              }
           }
         }
       }
