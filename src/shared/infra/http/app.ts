@@ -1,13 +1,17 @@
+import '@shared/infra/http/container';
 import express, {
   NextFunction,
+  Request,
   RequestHandler,
   Response,
-  Request,
 } from 'express';
-import '@shared/infra/http/container';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../../../swagger.json';
 import { router as routes } from './routes';
 
 const app = express();
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(express.json() as RequestHandler);
 
