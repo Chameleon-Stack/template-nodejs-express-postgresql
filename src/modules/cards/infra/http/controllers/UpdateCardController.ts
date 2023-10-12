@@ -8,7 +8,7 @@ export class UpdateCardController {
 
     const { description, title, status } = request.body;
 
-    const id = request.params.id;
+    const { id } = request.params;
 
     const play = await updateCardService.execute({
       id,

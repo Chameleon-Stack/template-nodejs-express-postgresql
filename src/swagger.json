@@ -273,6 +273,172 @@
           }
         }
       }
+    },
+    "/card": {
+      "post": {
+        "sumary": "Create new card",
+        "description": "Create a new user",
+        "parameters":[
+          {
+						"in":"path",
+						"name":"user_id",
+						"required":true
+					}
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "title":{
+                    "type": "string",
+                    "description": "title of the card"
+                  },
+                  "description":{
+                    "type": "string",
+                    "description": "description of the card"
+                  },
+                  "status":{
+                    "type": "string",
+                    "description": "status of the card"
+                  }
+                },
+                "example":{
+                  "title":"New CRUD",
+                  "description":"Create new CRUD with details",
+                  "status":"BACKLOG"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The card was sucessfuly created.",
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref":"#/components/schemas/Card"
+                  }
+                }
+              }
+          }
+        }
+      },
+      "patch": {
+        "sumary": "Update card",
+        "description": "Update an existing card",
+        "parameters":[
+          {
+						"in":"path",
+						"name":"id",
+						"required":true
+					}
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "title":{
+                    "type": "string",
+                    "description": "title of the card"
+                  },
+                  "description":{
+                    "type": "string",
+                    "description": "description of the card"
+                  },
+                  "status":{
+                    "type": "string",
+                    "description": "status of the card"
+                  }
+                },
+                "example":{
+                  "title":"New CRUD",
+                  "description":"Create new CRUD with details",
+                  "status":"BACKLOG"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The user was sucessfuly created.",
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref":"#/components/schemas/User"
+                  }
+                }
+              }
+          }
+        }
+      },
+      "delete": {
+        "sumary": "Delete card",
+        "description": "Delete an existing card",
+        "parameters":[
+          {
+						"in":"path",
+						"name":"id",
+						"required":true
+					}
+        ],
+        "responses": {
+          "204": {
+            "description": "The card was sucessfuly deleted"
+          }
+        }
+      },
+      "get": {
+        "sumary": "Get cards",
+        "description": "Get cards",
+        "parameters":[
+          {
+						"in":"path",
+						"name":"user_id",
+						"required":true
+					},
+          {
+						"in":"query",
+						"name":"status",
+						"required":false
+					},
+          {
+						"in":"query",
+						"name":"title",
+						"required":false
+					},
+          {
+						"in":"query",
+						"name":"description",
+						"required":false
+					},
+          {
+						"in":"query",
+						"name":"id",
+						"required":false
+					}
+        ],
+        "responses": {
+          "201": {
+            "description": "Card",
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "$ref":"#/components/schemas/Card"
+                  }
+                }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -341,6 +507,48 @@
             "type": "string",
             "example": "Chamelon",
             "description": "Name category"
+          }
+        }
+      },
+      "Card": {
+        "type": "object",
+        "properties": {
+          "id": {
+              "type": "string",
+              "format": "uuid",
+              "example": "240b472d-b3c1-4037-ab86-49c2ae8d564e",
+              "description": "Id of entity"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2020-08-28T13:52:40.476Z",
+            "description": "Creation date"
+          },
+          "updated_at": {
+              "type": "string",
+              "example": "2020-08-28T13:52:40.476Z",
+              "description": "Update date"
+          },
+          "status": {
+            "type": "string",
+            "example": "BACKLOG",
+            "description": "Status card"
+          },
+          "title": {
+            "type": "string",
+            "example": "Create new CRUD",
+            "description": "Title of the card"
+          },
+          "description": {
+            "type": "string",
+            "example": "Create new CRUD with details",
+            "description": "Description oh the card"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "240b472d-b3c1-4037-ab86-49c2ae8d564e",
+            "description": "User id of the card"
           }
         }
       }
