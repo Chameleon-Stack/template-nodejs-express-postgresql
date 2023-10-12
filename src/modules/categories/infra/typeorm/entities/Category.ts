@@ -2,11 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Card } from '../../../../cards/infra/typeorm/entities/Card';
+import { User } from '../../../../users/infra/typeorm/entities/User';
 
 @Entity('Category')
 export class Category {
@@ -21,6 +24,13 @@ export class Category {
 
   @Column()
   name: string;
+
+  @Column('uuid')
+  user_id: string;
+
+  @ManyToOne(() => User, user => user.cards)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @ManyToMany(() => Card, card => card.categories)
   cards: Card[];

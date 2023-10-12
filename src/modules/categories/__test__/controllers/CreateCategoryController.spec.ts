@@ -18,7 +18,7 @@ describe('Create category controller test', () => {
       new Category(),
     );
 
-    const response = await request(app).post(`/category`).send({
+    const response = await request(app).post(`/category/uuid`).send({
       name: 'Category test',
     });
 

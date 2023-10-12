@@ -188,6 +188,83 @@
           }
         }
       }
+    },
+    "/category": {
+      "post": {
+        "sumary": "Create new category",
+        "description": "Create a new category",
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type": "object",
+                "properties":{
+                  "name":{
+                    "type": "string",
+                    "description": "Name of the category"
+                  }
+                },
+                "example":{
+                  "name":"Test category"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The category was sucessfuly created.",
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref":"#/components/schemas/Category"
+                  }
+                }
+              }
+          }
+        }
+      },
+      "delete": {
+        "sumary": "Delete category",
+        "description": "Delete an existing category",
+        "parameters":[
+          {
+						"in":"path",
+						"name":"id",
+						"required":true
+					}
+        ],
+        "responses": {
+          "204": {
+            "description": "The category was sucessfuly deleted"
+          }
+        }
+      },
+      "get": {
+        "sumary": "Get categories by user id and params",
+        "description": "Get category by user id and params",
+        "parameters":[
+          {
+						"in":"path",
+						"name":"id",
+						"required":true
+					}
+        ],
+        "responses": {
+          "201": {
+            "description": "Categories",
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "$ref":"#/components/schemas/Category"
+                  }
+                }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -230,6 +307,32 @@
             "type": "string",
             "example": "filename.png",
             "description": "photo user"
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+              "type": "string",
+              "format": "uuid",
+              "example": "240b472d-b3c1-4037-ab86-49c2ae8d564e",
+              "description": "Id of entity"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2020-08-28T13:52:40.476Z",
+            "description": "Creation date"
+          },
+          "updated_at": {
+              "type": "string",
+              "example": "2020-08-28T13:52:40.476Z",
+              "description": "Update date"
+          },
+          "name": {
+            "type": "string",
+            "example": "Chamelon",
+            "description": "Name category"
           }
         }
       }

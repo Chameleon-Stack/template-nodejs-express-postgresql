@@ -89,7 +89,7 @@ yarn
 To add the project's tables to your database, run the following command:
 
 ```
-npm run typeorm migration:run -- -d src/shared/infra/typeorm/index.ts
+npm run typeorm migration:run
 ```
 
 or

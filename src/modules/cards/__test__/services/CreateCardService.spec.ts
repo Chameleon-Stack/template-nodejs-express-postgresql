@@ -21,11 +21,19 @@ describe('Create card service', () => {
   });
 
   it('should be able to create card', async () => {
+    const user = {
+      name: 'test',
+      email: 'test@test',
+      password: '1234',
+    };
+
+    const userCreated = await userRepositoryInMemory.create(user);
+
     const card: ICreateCardServiceDTO = {
       status: '10',
       title: 'Test',
       description: 'Test card',
-      user_id: 'uuid',
+      user_id: userCreated.id,
     };
 
     const cardCreated = await createCardService.execute(card);

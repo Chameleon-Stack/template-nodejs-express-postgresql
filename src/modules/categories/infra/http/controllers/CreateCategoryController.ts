@@ -7,8 +7,9 @@ export class CreateCategoryController {
     const createCategoryService = container.resolve(CreateCategoryService);
 
     const { name } = request.body;
+    const { user_id } = request.params;
 
-    const category = await createCategoryService.execute(name);
+    const category = await createCategoryService.execute(name, user_id);
 
     return response.status(201).json(category);
   }

@@ -20,7 +20,7 @@ describe('Get category by id controller test', () => {
       category,
     ]);
 
-    const response = await request(app).get(`/category`);
+    const response = await request(app).get(`/category/uuid`);
 
     expect(response.body).toEqual([category]);
     expect(response.status).toEqual(200);

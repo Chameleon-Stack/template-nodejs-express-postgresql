@@ -27,6 +27,10 @@ export class CreateCardService {
 
     const user = await this.userRepository.findById(user_id);
 
+    if (!user) {
+      throw new LibError('User does not exists!', 404);
+    }
+
     const card = await this.cardRepository.create({
       status,
       title,

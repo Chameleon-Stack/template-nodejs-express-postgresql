@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Card } from '../../../../cards/infra/typeorm/entities/Card';
+import { Category } from '../../../../categories/infra/typeorm/entities/Category';
 
 @Entity('User')
 export class User {
@@ -33,4 +34,7 @@ export class User {
 
   @OneToMany(() => Card, cards => cards.user)
   cards: Card[];
+
+  @OneToMany(() => Category, categories => categories.user)
+  categories: Category[];
 }

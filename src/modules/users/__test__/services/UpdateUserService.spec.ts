@@ -45,7 +45,7 @@ describe('Update user service', () => {
     } as User;
 
     await expect(updateUserService.execute(user)).rejects.toEqual(
-      new LibError('User does not exists'),
+      new LibError('User does not exists', 404),
     );
   });
 });

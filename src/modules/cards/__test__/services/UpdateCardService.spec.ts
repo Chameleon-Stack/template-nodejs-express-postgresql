@@ -43,7 +43,16 @@ describe('Update card service', () => {
 
   it('should not be able to update card without user', async () => {
     await expect(
-      updateCardService.execute({} as IUpdateCardServiceDTO),
+      updateCardService.execute({ id: undefined } as IUpdateCardServiceDTO),
     ).rejects.toEqual(new LibError('The id or the value was not inserted!'));
+  });
+
+  it('should not be able to update card does not exists', async () => {
+    await expect(
+      updateCardService.execute({
+        id: 'uuid',
+        description: 'test',
+      } as IUpdateCardServiceDTO),
+    ).rejects.toEqual(new LibError('the card does not exist', 404));
   });
 });

@@ -7,8 +7,12 @@ export class GetCategoriesController {
     const getCategoriesService = container.resolve(GetCategoriesService);
 
     const { query } = request;
+    const { user_id } = request.params;
 
-    const categories = await getCategoriesService.execute(query);
+    const categories = await getCategoriesService.execute({
+      ...query,
+      user_id,
+    });
 
     return response.json(categories);
   }

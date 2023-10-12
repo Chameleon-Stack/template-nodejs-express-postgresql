@@ -10,7 +10,7 @@ export class GetCategoriesService {
     private categoryRepository: ICategoryRepository,
   ) {}
 
-  async execute({ name }: IGetAllCategoriesDTO): Promise<Category[]> {
-    return this.categoryRepository.findAll(name);
+  async execute({ user_id, name }: IGetAllCategoriesDTO): Promise<Category[]> {
+    return this.categoryRepository.findAll(user_id, name);
   }
 }

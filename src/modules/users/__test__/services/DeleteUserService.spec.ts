@@ -28,7 +28,7 @@ describe('Delete user service', () => {
 
   it('should not be able to delete user does not exists', async () => {
     await expect(deleteUserUseCase.execute(uuidv4())).rejects.toEqual(
-      new LibError('User does not exists!'),
+      new LibError('User does not exists!', 404),
     );
   });
 });
