@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import LibError from '../../../shared/errors/LibError';
 import { Category } from '../infra/typeorm/entities/Category';
 import { ICategoryRepository } from '../repositories/ICategoryRepository';
 
@@ -11,7 +12,7 @@ export class CreateCategoryService {
 
   async execute(name: string): Promise<Category> {
     if (!name) {
-      throw new Error('Name is required!');
+      throw new LibError('Name is required!');
     }
 
     const card = await this.categoryRepository.create(name);

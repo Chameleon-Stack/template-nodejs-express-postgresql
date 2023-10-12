@@ -2,6 +2,7 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import { v4 as uuidV4 } from 'uuid';
+import LibError from '../../../shared/errors/LibError';
 import { User } from '../infra/typeorm/entities/User';
 import { IUserRepository } from '../repositories/IUserRepository';
 
@@ -21,13 +22,13 @@ export class SessionService {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new Error('Incorrect email/password');
+      throw new LibError('Incorrect email/password');
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error('Incorrect email/password');
+      throw new LibError('Incorrect email/password');
     }
 
     const token = sign({}, uuidV4(), {

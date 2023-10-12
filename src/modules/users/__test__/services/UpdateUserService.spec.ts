@@ -1,3 +1,4 @@
+import LibError from '../../../../shared/errors/LibError';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { User } from '../../infra/typeorm/entities/User';
 import { IUserRepository } from '../../repositories/IUserRepository';
@@ -44,7 +45,7 @@ describe('Update user service', () => {
     } as User;
 
     await expect(updateUserService.execute(user)).rejects.toEqual(
-      new Error('User does not exists'),
+      new LibError('User does not exists'),
     );
   });
 });

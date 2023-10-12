@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import LibError from '../../../shared/errors/LibError';
 import { ICardRepository } from '../repositories/ICardRepository';
 
 @injectable()
@@ -10,13 +11,13 @@ export class DeleteCardService {
 
   async execute(id: string): Promise<void> {
     if (!id) {
-      throw new Error('The property id is required!');
+      throw new LibError('The property id is required!');
     }
 
     const card = await this.cardRepository.findById(id);
 
     if (!card) {
-      throw new Error('The card does not exist');
+      throw new LibError('The card does not exist', 404);
     }
 
     await this.cardRepository.delete(card);

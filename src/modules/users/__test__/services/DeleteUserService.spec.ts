@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import LibError from '../../../../shared/errors/LibError';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { UserRepositoryInMemory } from '../../repositories/inMemory/UserRepositoryInMemory';
@@ -27,7 +28,7 @@ describe('Delete user service', () => {
 
   it('should not be able to delete user does not exists', async () => {
     await expect(deleteUserUseCase.execute(uuidv4())).rejects.toEqual(
-      new Error('User does not exists!'),
+      new LibError('User does not exists!'),
     );
   });
 });

@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import LibError from '../../../shared/errors/LibError';
 import { IUserRepository } from '../../users/repositories/IUserRepository';
 import { ICreateCardServiceDTO } from '../dtos/ICreateCardServiceDTO';
 import { Card } from '../infra/typeorm/entities/Card';
@@ -21,7 +22,7 @@ export class CreateCardService {
     status,
   }: ICreateCardServiceDTO): Promise<Card> {
     if (!user_id || !description || !title || !status) {
-      throw new Error('Error in the creation of the card!');
+      throw new LibError('Error in the creation of the card!');
     }
 
     const user = await this.userRepository.findById(user_id);

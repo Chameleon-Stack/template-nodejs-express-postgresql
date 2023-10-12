@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import LibError from '../../../shared/errors/LibError';
 import { IUserRepository } from '../repositories/IUserRepository';
 
 @injectable()
@@ -12,7 +13,7 @@ export class DeleteUserService {
     const user = await this.usersRepository.findById(id);
 
     if (!user) {
-      throw new Error('User does not exists!');
+      throw new LibError('User does not exists!', 404);
     }
 
     await this.usersRepository.delete(user);

@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import LibError from '../../../../shared/errors/LibError';
 import { User } from '../../../users/infra/typeorm/entities/User';
 import { ICreateCardDTO } from '../../dtos/ICreateCardDTO';
 import { ICardRepository } from '../../repositories/ICardRepository';
@@ -29,13 +30,13 @@ describe('Delete card service', () => {
 
   it('should not be able to delete card missing params', async () => {
     await expect(deleteCardUseCase.execute(null)).rejects.toEqual(
-      new Error('The property id is required!'),
+      new LibError('The property id is required!'),
     );
   });
 
   it('should not be able to delete card does not exists', async () => {
     await expect(deleteCardUseCase.execute(uuidv4())).rejects.toEqual(
-      new Error('The card does not exist'),
+      new LibError('The card does not exist'),
     );
   });
 });

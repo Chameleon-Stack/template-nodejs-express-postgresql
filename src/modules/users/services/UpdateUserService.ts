@@ -2,6 +2,7 @@ import { compare, hash } from 'bcryptjs';
 import fs from 'fs';
 import path from 'path';
 import { inject, injectable } from 'tsyringe';
+import LibError from '../../../shared/errors/LibError';
 import { IUpdateUserDTO } from '../dtos/IUpdateUserDTO';
 import { User } from '../infra/typeorm/entities/User';
 import { IUserRepository } from '../repositories/IUserRepository';
@@ -24,13 +25,13 @@ export class UpdateUserService {
     const user = await this.usersRepository.findById(id);
 
     if (!user) {
-      throw new Error('User does not exists');
+      throw new LibError('User does not exists', 404);
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error('Password incorrect');
+      throw new LibError('Password incorrect');
     }
 
     if (name) {

@@ -1,5 +1,6 @@
 import { genSaltSync, hashSync } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
+import LibError from '../../../shared/errors/LibError';
 import { ICreateUserDTO } from '../dtos/ICreateUserDTO';
 import { User } from '../infra/typeorm/entities/User';
 import { IUserRepository } from '../repositories/IUserRepository';
@@ -18,13 +19,13 @@ export class CreateUserService {
     photo,
   }: ICreateUserDTO): Promise<User> {
     if (!name || !email || !password) {
-      throw new Error('Missins params!');
+      throw new LibError('Missins params!');
     }
 
     const foundUser = await this.userRepository.findByEmail(email);
 
     if (foundUser) {
-      throw new Error('User already exists!');
+      throw new LibError('User already exists!');
     }
 
     const salt = genSaltSync(8);

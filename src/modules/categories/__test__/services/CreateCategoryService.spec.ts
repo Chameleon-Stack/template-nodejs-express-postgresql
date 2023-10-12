@@ -1,3 +1,4 @@
+import LibError from '../../../../shared/errors/LibError';
 import { ICategoryRepository } from '../../repositories/ICategoryRepository';
 import { CategoryRepositoryInMemory } from '../../repositories/inMemory/CategoryRepositoryInMemory';
 import { CreateCategoryService } from '../../services/CreateCategoryService';
@@ -23,7 +24,7 @@ describe('Create category service', () => {
 
   it('should not be able to create category with params missing', async () => {
     await expect(createCategoryService.execute(null)).rejects.toEqual(
-      new Error('Name is required!'),
+      new LibError('Name is required!'),
     );
   });
 });

@@ -1,3 +1,4 @@
+import LibError from '../../../../shared/errors/LibError';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { UserRepositoryInMemory } from '../../repositories/inMemory/UserRepositoryInMemory';
@@ -33,7 +34,7 @@ describe('Create user service', () => {
         email: 'false@email.com',
         password: '1234',
       }),
-    ).rejects.toEqual(new Error('Missins params!'));
+    ).rejects.toEqual(new LibError('Missins params!'));
   });
 
   it('should not be able to create user with params missing', async () => {
@@ -46,7 +47,7 @@ describe('Create user service', () => {
     await createUserService.execute(user);
 
     await expect(createUserService.execute(user)).rejects.toEqual(
-      new Error('User already exists!'),
+      new LibError('User already exists!'),
     );
   });
 });

@@ -1,3 +1,4 @@
+import LibError from '../../../../shared/errors/LibError';
 import { ICategoryRepository } from '../../../categories/repositories/ICategoryRepository';
 import { CategoryRepositoryInMemory } from '../../../categories/repositories/inMemory/CategoryRepositoryInMemory';
 import { User } from '../../../users/infra/typeorm/entities/User';
@@ -43,6 +44,6 @@ describe('Update card service', () => {
   it('should not be able to update card without user', async () => {
     await expect(
       updateCardService.execute({} as IUpdateCardServiceDTO),
-    ).rejects.toEqual(new Error('The id or the value was not inserted!'));
+    ).rejects.toEqual(new LibError('The id or the value was not inserted!'));
   });
 });

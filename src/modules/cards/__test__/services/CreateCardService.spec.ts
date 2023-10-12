@@ -1,3 +1,4 @@
+import LibError from '../../../../shared/errors/LibError';
 import { IUserRepository } from '../../../users/repositories/IUserRepository';
 import { UserRepositoryInMemory } from '../../../users/repositories/inMemory/UserRepositoryInMemory';
 import { ICreateCardServiceDTO } from '../../dtos/ICreateCardServiceDTO';
@@ -41,6 +42,6 @@ describe('Create card service', () => {
         description: 'Test card',
         user_id: null,
       }),
-    ).rejects.toEqual(new Error('Error in the creation of the card!'));
+    ).rejects.toEqual(new LibError('Error in the creation of the card!'));
   });
 });

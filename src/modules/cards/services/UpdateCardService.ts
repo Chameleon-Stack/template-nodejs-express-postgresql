@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import LibError from '../../../shared/errors/LibError';
 import { ICategoryRepository } from '../../categories/repositories/ICategoryRepository';
 import { IUpdateCardServiceDTO } from '../dtos/IUpdateCardServiceDTO';
 import { Card } from '../infra/typeorm/entities/Card';
@@ -22,13 +23,13 @@ export class UpdateCardService {
     category_ids,
   }: IUpdateCardServiceDTO): Promise<Card> {
     if (!id && (!description || !title || !status)) {
-      throw new Error('The id or the value was not inserted!');
+      throw new LibError('The id or the value was not inserted!');
     }
 
     const card = await this.cardRepository.findById(id);
 
     if (!card) {
-      throw new Error('the card does not exist');
+      throw new LibError('the card does not exist', 404);
     }
 
     if (category_ids?.length > 0) {

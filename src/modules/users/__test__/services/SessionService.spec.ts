@@ -1,3 +1,4 @@
+import LibError from '../../../../shared/errors/LibError';
 import { User } from '../../infra/typeorm/entities/User';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { UserRepositoryInMemory } from '../../repositories/inMemory/UserRepositoryInMemory';
@@ -33,7 +34,7 @@ describe('Get user by id service', () => {
   it('should not be able to authenticate with email does not exists', async () => {
     await expect(
       sessionService.execute('example@example.com', '1234'),
-    ).rejects.toEqual(new Error('Incorrect email/password'));
+    ).rejects.toEqual(new LibError('Incorrect email/password'));
   });
 
   it('should not be able to authenticate with password incorrect', async () => {
@@ -46,7 +47,7 @@ describe('Get user by id service', () => {
     await createUserService.execute(user);
 
     await expect(sessionService.execute(user.email, '')).rejects.toEqual(
-      new Error('Incorrect email/password'),
+      new LibError('Incorrect email/password'),
     );
   });
 });
