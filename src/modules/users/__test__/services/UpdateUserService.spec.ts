@@ -35,7 +35,7 @@ describe('Update user service', () => {
     expect(userCreated.email).toEqual(user.email);
   });
 
-  it('should be able to update user without user', async () => {
+  it('should not be able to update user without user', async () => {
     const user: User = {
       id: 'UUID',
       email: 'example@example.com',

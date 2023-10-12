@@ -1,9 +1,7 @@
-
-import "reflect-metadata";
 import request from 'supertest';
 import { app } from '../../../../shared/infra/http/app';
 import { User } from '../../infra/typeorm/entities/User';
-import { SessionService } from "../../services/SessionService";
+import { SessionService } from '../../services/SessionService';
 
 jest.mock('../../services/SessionService');
 const sessionServiceMock = SessionService as jest.MockedClass<
@@ -16,17 +14,15 @@ describe('Session controller', () => {
   });
 
   it('Should be able to session user', async () => {
-    const user = new User()
-    
-    sessionServiceMock.prototype.execute.mockResolvedValueOnce(
-      {
-        user: user,
-        token: 'token'
-      },
-    );
+    const user = new User();
+
+    sessionServiceMock.prototype.execute.mockResolvedValueOnce({
+      user,
+      token: 'token',
+    });
 
     const response = await request(app).post(`/user/session`);
-    
+
     expect(response.body).toHaveProperty('token');
     expect(response.status).toEqual(200);
   });

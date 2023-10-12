@@ -26,7 +26,7 @@ describe('Create user service', () => {
     expect(userCreated.email).toEqual(user.email);
   });
 
-  it('should be able to create user with params missing', async () => {
+  it('should not be able to create user with params missing', async () => {
     await expect(
       createUserService.execute({
         name: null,
@@ -36,7 +36,7 @@ describe('Create user service', () => {
     ).rejects.toEqual(new Error('Missins params!'));
   });
 
-  it('should be able to create user with params missing', async () => {
+  it('should not be able to create user with params missing', async () => {
     const user: ICreateUserDTO = {
       email: 'example@example.com',
       password: '1234',

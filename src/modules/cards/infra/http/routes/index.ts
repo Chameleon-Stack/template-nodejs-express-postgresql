@@ -14,6 +14,6 @@ const getCardsController = new GetCardsController();
 cardsRoutes.post('/:user_id', createCardController.handle);
 cardsRoutes.patch('/:id', updateCardController.handle);
 cardsRoutes.delete('/:id', deleteCardController.handle);
-cardsRoutes.get('/all', getCardsController.handle);
+cardsRoutes.get('/:user_id', getCardsController.handle);
 
 export default cardsRoutes;

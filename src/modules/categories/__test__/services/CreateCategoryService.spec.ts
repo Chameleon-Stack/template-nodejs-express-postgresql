@@ -21,7 +21,7 @@ describe('Create category service', () => {
     expect(categoryCreated).toHaveProperty('id');
   });
 
-  it('should be able to create category with params missing', async () => {
+  it('should not be able to create category with params missing', async () => {
     await expect(createCategoryService.execute(null)).rejects.toEqual(
       new Error('Name is required!'),
     );

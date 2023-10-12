@@ -22,7 +22,7 @@ export class UpdateCardService {
     category_ids,
   }: IUpdateCardServiceDTO): Promise<Card> {
     if (!id && (!description || !title || !status)) {
-      throw new Error('the id or the value was not inserted');
+      throw new Error('The id or the value was not inserted!');
     }
 
     const card = await this.cardRepository.findById(id);
@@ -31,7 +31,7 @@ export class UpdateCardService {
       throw new Error('the card does not exist');
     }
 
-    if (category_ids.length > 0) {
+    if (category_ids?.length > 0) {
       for (const category_id of category_ids) {
         const category = await this.categoryRepository.findById(category_id);
 

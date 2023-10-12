@@ -4,11 +4,15 @@ import { GetCardsService } from '../../../services/GetCardsService';
 
 export class GetCardsController {
   public async handle(request: Request, response: Response): Promise<Response> {
-    const getBetsByIdService = container.resolve(GetCardsService);
+    const getCardsService = container.resolve(GetCardsService);
 
-    const query = request.query;
+    const { query } = request;
+    const { user_id } = request.params;
 
-    const play = await getBetsByIdService.execute(query);
+    const play = await getCardsService.execute({
+      ...query,
+      user_id,
+    });
 
     return response.json(play);
   }

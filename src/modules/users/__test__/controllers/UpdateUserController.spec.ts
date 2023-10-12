@@ -1,9 +1,7 @@
-
-import "reflect-metadata";
 import request from 'supertest';
 import { app } from '../../../../shared/infra/http/app';
 import { User } from '../../infra/typeorm/entities/User';
-import { UpdateUserService } from "../../services/UpdateUserService";
+import { UpdateUserService } from '../../services/UpdateUserService';
 
 jest.mock('../../services/UpdateUserService');
 const updateUserServiceMock = UpdateUserService as jest.MockedClass<
@@ -16,14 +14,12 @@ describe('Update user controller test', () => {
   });
 
   it('Should be able to update a user', async () => {
-    updateUserServiceMock.prototype.execute.mockResolvedValueOnce(
-      new User(),
-    );
+    updateUserServiceMock.prototype.execute.mockResolvedValueOnce(new User());
 
     const response = await request(app).patch(`/user`).send({
-        email: "example@example.com",
-        password: "1234",
-        name: "User test",
+      email: 'example@example.com',
+      password: '1234',
+      name: 'User test',
     });
 
     expect(response.status).toEqual(201);

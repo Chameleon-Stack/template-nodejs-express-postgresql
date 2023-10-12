@@ -61,7 +61,7 @@ describe('User repository test', () => {
     const updateUser = await userRepository.update(user);
 
     expect(updateUser).toBeInstanceOf(User);
-    expect(user.name).toEqual('test update 2');
+    expect(updateUser.name).toEqual('test update 2');
   });
 
   it('Should be able to find by ID', async () => {
