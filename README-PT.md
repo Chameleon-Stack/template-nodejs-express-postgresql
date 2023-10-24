@@ -58,6 +58,8 @@ Para instalar o container que será rodado no projeto é necessário colocar o s
 docker run --name postgres -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
 ```
 
+#### Nessa etapa instale um SGBD e conecte com as credenciais do docker
+
 ## ⚙️ CONFIGURANDO O PROJETO
 
 ### Adicionando valores de conexão do banco ao .env

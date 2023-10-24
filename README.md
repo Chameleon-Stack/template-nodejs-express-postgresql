@@ -58,6 +58,8 @@ To install the container that will run in the project, you need to enter the fol
 docker run --name postgres -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
 ```
 
+#### In this step, install a DBMS and connect with docker credentials
+
 ## ⚙️ CONFIGURING THE PROJECT
 
 ### Adding Database Connection Values to .env
