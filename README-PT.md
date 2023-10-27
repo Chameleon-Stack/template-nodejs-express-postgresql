@@ -64,11 +64,11 @@ docker run --name postgres -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postg
 
 ### Adicionando valores de conexão do banco ao .env
 
-Crie um arquivo chamado ".env" na raiz do projeto e adicione as variáveis contidas no arquivo ".env.example" com os valores de conexão que você informou ao criar o container no passo anterior. O arquivo env de acordo com o que container criado ficaria assim:
+Conecte ao banco criado com as variáveis que você utilizou para criar a imagem do docker.
+Crie um arquivo chamado ".env" na raiz do projeto e adicione as variáveis contidas no arquivo ".env.example" com o valor da url de conexão do banco de dados. O arquivo env de acordo com o que container criado ficaria aproximadamente assim:
 
 ```
-POSTGRESQL_PORT=5432
-POSTGRESQL_PASSWORD=mypassword
+POSTGRESQL_URI=postgres://postgresql://localhost:5432/postgres
 NODE_ENV=dev
 ```
 

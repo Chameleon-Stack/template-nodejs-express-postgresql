@@ -64,11 +64,11 @@ docker run --name postgres -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postg
 
 ### Adding Database Connection Values to .env
 
-Create a file named ".env" at the root of the project and add the variables from the ".env.example" file with the connection values you provided when creating the container in the previous step. The .env file, according to the container created, would look like this:
+Connect to the database created with the variables you used to create the Docker image.
+Create a file called ".env" at the root of the project and add the variables contained in the ".env.example" file with the value of the database connection URL. The ".env" file, according to the container you created, would look something like this:
 
 ```
-POSTGRESQL_PORT=5432
-POSTGRESQL_PASSWORD=mypassword
+POSTGRESQL_URI=postgres://postgresql://localhost:5432/postgres
 NODE_ENV=dev
 ```
 

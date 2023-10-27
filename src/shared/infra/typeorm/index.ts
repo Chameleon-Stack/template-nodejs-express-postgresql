@@ -2,16 +2,8 @@ import 'dotenv/config';
 import { DataSource } from 'typeorm';
 
 export const dataSource = new DataSource({
-  name: 'default',
   type: 'postgres',
-  host: 'localhost',
-  port: Number(process.env.POSTGRESQL_PORT),
-  username: 'postgres',
-  password: process.env.POSTGRESQL_PASSWORD,
-  database: process.env.NODE_ENV === 'test' ? 'test' : 'chameleon',
-  synchronize: false,
-  logging: false,
-  migrationsTableName: 'migration',
+  url: process.env.POSTGRESQL_URI,
   entities: ['src/**/**/infra/typeorm/entities/*.ts'],
   migrations: ['src/shared/infra/typeorm/migrations/*.ts'],
 });
