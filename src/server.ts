@@ -1,9 +1,9 @@
 import 'reflect-metadata';
-import { app } from '@shared/infra/http/app';
-import '@shared/infra/http/container';
-import { dataSource } from '@shared/infra/typeorm';
+import './shared/infra/http/container';
 import { config } from 'dotenv';
 import 'dotenv/config';
+import { dataSource } from './shared/infra/typeorm';
+import { app } from './shared/infra/http/app';
 
 config();
 
