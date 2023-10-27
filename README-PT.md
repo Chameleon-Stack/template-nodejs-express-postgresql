@@ -68,7 +68,7 @@ Conecte ao banco criado com as variáveis que você utilizou para criar a imagem
 Crie um arquivo chamado ".env" na raiz do projeto e adicione as variáveis contidas no arquivo ".env.example" com o valor da url de conexão do banco de dados. O arquivo env de acordo com o que container criado ficaria aproximadamente assim:
 
 ```
-POSTGRESQL_URI=postgres://postgresql://localhost:5432/postgres
+POSTGRESQL_URI=postgres://username:password@localhost:5432/database_name
 NODE_ENV=dev
 ```
 

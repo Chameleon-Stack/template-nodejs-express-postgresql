@@ -68,7 +68,7 @@ Connect to the database created with the variables you used to create the Docker
 Create a file called ".env" at the root of the project and add the variables contained in the ".env.example" file with the value of the database connection URL. The ".env" file, according to the container you created, would look something like this:
 
 ```
-POSTGRESQL_URI=postgres://postgresql://localhost:5432/postgres
+POSTGRESQL_URI=postgres://username:password@localhost:5432/database_name
 NODE_ENV=dev
 ```
 
