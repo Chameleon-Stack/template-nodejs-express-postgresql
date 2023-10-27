@@ -125,8 +125,7 @@ The project will run at the following URL:
 To run the project's tests, you need to add a test database to your project with the name "test" and then change the NODE_ENV variable from dev to test. Your .env file should look like this:
 
 ```
-POSTGRESQL_PORT=5432
-POSTGRESQL_PASSWORD=mypassword
+POSTGRESQL_URI='postgres://postgres:mypassword@localhost:5432/test'
 NODE_ENV=test
 ```
 
