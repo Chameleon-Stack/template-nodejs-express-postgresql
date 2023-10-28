@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js -- -d src/shared/infra/typeorm/index.ts",
-    "start": "ts-node-esm -r tsconfig-paths/register src/server.ts",
+    "start": "ts-node-esm -r tsconfig-paths/register dist/server.js",
     "build": "rm -rf ./dist && tsc -p ./tsconfig.build.json && tsc-alias -p ./tsconfig.build.json",
     "test": "jest --runInBand --detectOpenHandles --forceExit",
     "test:unit": "jest --runInBand --silent --detectOpenHandles --config ./jest.unit.config.ts",
