@@ -1,5 +1,5 @@
-import { compare } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import jsonwebtoken from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import { v4 as uuidV4 } from 'uuid';
 import LibError from '../../../shared/errors/LibError';
@@ -25,13 +25,13 @@ export class SessionService {
       throw new LibError('Incorrect email/password');
     }
 
-    const passwordMatch = await compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
       throw new LibError('Incorrect email/password');
     }
 
-    const token = sign({}, uuidV4(), {
+    const token = jsonwebtoken.sign({}, uuidV4(), {
       subject: user.id,
       expiresIn: 1,
     });

@@ -1,11 +1,11 @@
 import 'dotenv/config';
 import { DataSource } from 'typeorm';
 
-const dataSource = new DataSource({
+const dataSourceTest = new DataSource({
   type: 'postgres',
-  url: process.env.POSTGRESQL_URI,
+  url: process.env.POSTGRESQL_URI_TEST,
   entities: ['src/**/**/infra/typeorm/entities/*.ts'],
   migrations: ['src/shared/infra/typeorm/migrations/*.ts'],
 });
 
-export default dataSource;
+export default dataSourceTest;

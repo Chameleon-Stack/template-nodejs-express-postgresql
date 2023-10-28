@@ -1,4 +1,4 @@
-import { compare, hash } from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 import fs from 'fs';
 import path from 'path';
 import { inject, injectable } from 'tsyringe';
@@ -28,7 +28,7 @@ export class UpdateUserService {
       throw new LibError('User does not exists', 404);
     }
 
-    const passwordMatch = await compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
       throw new LibError('Password incorrect');
@@ -49,7 +49,7 @@ export class UpdateUserService {
     }
 
     if (new_password) {
-      const hashedPassword = await hash(new_password, 8);
+      const hashedPassword = await bcrypt.hash(new_password, 8);
 
       user.password = hashedPassword;
     }

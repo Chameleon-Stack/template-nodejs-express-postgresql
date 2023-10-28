@@ -1,4 +1,4 @@
-class LibError {
+class LibraryError {
   public readonly message: string;
 
   public readonly statusCode: number;
@@ -12,4 +12,4 @@ class LibError {
   }
 }
 
-export default LibError;
+export default LibraryError;

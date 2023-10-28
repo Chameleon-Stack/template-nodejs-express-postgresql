@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { dataSource } from '../../../../../shared/infra/typeorm';
+import dataSource from '../../../../../shared/infra/typeorm';
 import { User } from '../../../../users/infra/typeorm/entities/User';
 import { ICategoryRepository } from '../../../repositories/ICategoryRepository';
 import { Category } from '../entities/Category';

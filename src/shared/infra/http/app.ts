@@ -1,5 +1,5 @@
-import 'express-async-errors';
 import 'reflect-metadata';
+import 'express-async-errors';
 import './container';
 import express, {
   NextFunction,
@@ -7,28 +7,27 @@ import express, {
   RequestHandler,
   Response,
 } from 'express';
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../../../swagger.json';
-import LibError from '../../errors/LibError';
+import LibraryError from '../../errors/LibError';
 import { router as routes } from './routes';
+import swaggerDocumentation from './docs/swagger';
 
 const app = express();
 
 app.use(express.json() as RequestHandler);
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
 app.use(routes);
 
+swaggerDocumentation(app);
+
 app.use(
-  (err: Error, request: Request, response: Response, next: NextFunction) => {
-    if (err instanceof LibError) {
+  (error: Error, request: Request, response: Response, next: NextFunction) => {
+    if (error instanceof LibraryError) {
       return response
-        .status(err.statusCode)
-        .json({ message: err.message, status: err.statusCode });
+        .status(error.statusCode)
+        .json({ message: error.message, status: error.statusCode });
     }
 
-    console.error(err);
+    console.error(error);
 
     return response
       .status(500)

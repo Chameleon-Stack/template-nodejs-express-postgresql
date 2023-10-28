@@ -1,23 +1,38 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["es2021", "ESNext.String"],
-    "module": "commonjs",
-    "outDir": "./dist",
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "baseUrl": "./src",
-    "paths": {
-      "@modules/*": ["modules/*"],
-      "@config/*": ["config/*"],
-      "@shared/*": ["shared/*"]
-    },
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": ["es6"],
+    "allowJs": false,
+    "importHelpers": true,
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "types": [
+      "jest",
+      "reflect-metadata"
+    ],
     "forceConsistentCasingInFileNames": true,
-    "downlevelIteration": true,
-    "resolveJsonModule": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "strictPropertyInitialization": false,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true  
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true,
+  },
+  "include": [
+    "src",
+    "tests"
+  ],
+  "exclude": [
+    "./*.js"
+  ]
 }
