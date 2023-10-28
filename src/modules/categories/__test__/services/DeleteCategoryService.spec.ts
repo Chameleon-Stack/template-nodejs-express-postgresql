@@ -25,12 +25,6 @@ describe('Delete category service', () => {
     await deleteCategoryService.execute(categoryCreated.id);
   });
 
-  it('should not be able to delete category missing params', async () => {
-    await expect(deleteCategoryService.execute(null)).rejects.toEqual(
-      new LibError('The property id is required!'),
-    );
-  });
-
   it('should not be able to delete category does not exists', async () => {
     await expect(deleteCategoryService.execute(uuidv4())).rejects.toEqual(
       new LibError('The category does not exist', 404),

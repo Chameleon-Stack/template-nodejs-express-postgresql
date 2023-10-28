@@ -32,7 +32,7 @@ export class UpdateCardService {
       throw new LibError('the card does not exist', 404);
     }
 
-    if (category_ids?.length > 0) {
+    if (category_ids && category_ids?.length > 0) {
       for (const category_id of category_ids) {
         const category = await this.categoryRepository.findById(category_id);
 

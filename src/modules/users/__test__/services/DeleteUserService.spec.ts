@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import LibError from '../../../../shared/errors/LibError';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
+import { User } from '../../infra/typeorm/entities/User';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { UserRepositoryInMemory } from '../../repositories/inMemory/UserRepositoryInMemory';
 import { DeleteUserService } from '../../services/DeleteUserService';
@@ -21,7 +22,7 @@ describe('Delete user service', () => {
       name: 'User test',
     };
 
-    const userCreated = await userRepositoryInMemory.create(user);
+    const userCreated = (await userRepositoryInMemory.create(user)) as User;
 
     await deleteUserUseCase.execute(userCreated.id);
   });

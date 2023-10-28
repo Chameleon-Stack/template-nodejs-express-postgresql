@@ -17,7 +17,6 @@ export class CardRepositoryInMemory implements ICardRepository {
     const card = new Card();
 
     Object.assign(user || new User(), {
-      id: uuidv4(),
       ...user,
     });
 
@@ -47,8 +46,8 @@ export class CardRepositoryInMemory implements ICardRepository {
     return card;
   }
 
-  async findById(id: string): Promise<Card> {
-    return this.cards.find(card => card.id === id);
+  async findById(id: string): Promise<Card | null> {
+    return this.cards.find(card => card.id === id) || null;
   }
 
   async findAll({

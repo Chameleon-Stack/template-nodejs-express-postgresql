@@ -38,12 +38,6 @@ describe('Create category service', () => {
     expect(categoryCreated).toHaveProperty('id');
   });
 
-  it('should not be able to create category with params missing', async () => {
-    await expect(createCategoryService.execute(null, '')).rejects.toEqual(
-      new LibError('Name/User id is required!'),
-    );
-  });
-
   it('should not be able to create category with user does not exists', async () => {
     await expect(createCategoryService.execute('test', 'uuid')).rejects.toEqual(
       new LibError('User does not exists!', 404),

@@ -25,7 +25,7 @@ describe('Category repository test', () => {
     const email = 'test@test';
     const password = '1234';
 
-    user = await userRepository.create({ name, email, password });
+    user = (await userRepository.create({ name, email, password })) as User;
   });
 
   afterEach(async () => {
@@ -63,7 +63,9 @@ describe('Category repository test', () => {
 
     await ormCategoryRepository.save(category);
 
-    const foundCategory = await categoryRepository.findById(category.id);
+    const foundCategory = (await categoryRepository.findById(
+      category.id,
+    )) as Category;
 
     expect(foundCategory).toBeInstanceOf(Category);
     expect(foundCategory.id).toEqual(category.id);

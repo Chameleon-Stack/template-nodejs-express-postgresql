@@ -17,7 +17,7 @@ export class CreateUserService {
     email,
     password,
     photo,
-  }: ICreateUserDTO): Promise<User> {
+  }: ICreateUserDTO): Promise<User | undefined> {
     if (!name || !email || !password) {
       throw new LibError('Missins params!');
     }
@@ -31,12 +31,12 @@ export class CreateUserService {
     const salt = genSaltSync(8);
     const hash = hashSync(password, salt);
 
-    const user = await this.userRepository.create({
+    const user = (await this.userRepository.create({
       name,
       email,
       password: hash,
       photo,
-    });
+    })) as User;
 
     return { ...user, password: '' };
   }

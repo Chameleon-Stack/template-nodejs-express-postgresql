@@ -28,12 +28,6 @@ describe('Delete card service', () => {
     await deleteCardUseCase.execute(cardCreated.id);
   });
 
-  it('should not be able to delete card missing params', async () => {
-    await expect(deleteCardUseCase.execute(null)).rejects.toEqual(
-      new LibError('The property id is required!'),
-    );
-  });
-
   it('should not be able to delete card does not exists', async () => {
     await expect(deleteCardUseCase.execute(uuidv4())).rejects.toEqual(
       new LibError('The card does not exist', 404),

@@ -10,7 +10,6 @@ export class CategoryRepositoryInMemory implements ICategoryRepository {
     const category = new Category();
 
     Object.assign(user || new User(), {
-      id: uuidv4(),
       ...user,
     });
 
@@ -35,8 +34,8 @@ export class CategoryRepositoryInMemory implements ICategoryRepository {
       : this.categories.filter(category => category.user_id === user_id);
   }
 
-  async findById(id: string): Promise<Category> {
-    return this.categories.find(category => category.id === id);
+  async findById(id: string): Promise<Category | null> {
+    return this.categories.find(category => category.id === id) || null;
   }
 
   async delete(user: Category): Promise<void> {

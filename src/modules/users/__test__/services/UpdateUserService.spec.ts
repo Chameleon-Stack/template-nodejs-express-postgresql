@@ -24,7 +24,7 @@ describe('Update user service', () => {
       name: 'User test',
     };
 
-    const userCreated = await createUserService.execute(user);
+    const userCreated = (await createUserService.execute(user)) as User;
 
     await updateUserService.execute({
       ...userCreated,

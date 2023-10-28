@@ -34,7 +34,7 @@ describe('Get all categories service', () => {
     );
 
     const findCategory = await getCategoriesService.execute({
-      name: null,
+      name: undefined,
       user_id: categoryCreated.user_id,
     });
 

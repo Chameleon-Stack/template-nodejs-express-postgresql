@@ -22,7 +22,7 @@ export class CardRepository implements ICardRepository {
     return this.ormRepository.save(card);
   }
 
-  async findById(id: string): Promise<Card> {
+  async findById(id: string): Promise<Card | null> {
     return this.ormRepository.findOne({
       where: { id },
     });

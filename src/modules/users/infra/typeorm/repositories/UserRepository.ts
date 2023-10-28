@@ -21,11 +21,11 @@ export class UserRepository implements IUserRepository {
     return this.ormRepository.save(user);
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<User | null> {
     return this.ormRepository.findOne({ where: { email } });
   }
 
-  async findById(id: string): Promise<User> {
+  async findById(id: string): Promise<User | null> {
     return this.ormRepository.findOne({ where: { id } });
   }
 

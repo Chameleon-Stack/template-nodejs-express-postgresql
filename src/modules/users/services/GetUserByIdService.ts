@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import LibError from '../../../shared/errors/LibError';
 import { User } from '../infra/typeorm/entities/User';
 import { IUserRepository } from '../repositories/IUserRepository';
 
@@ -10,6 +11,12 @@ export class GetUserByIdService {
   ) {}
 
   async execute(id: string): Promise<User> {
-    return this.usersRepository.findById(id);
+    const user = await this.usersRepository.findById(id);
+
+    if (!user) {
+      throw new LibError('User does not existits!', 404);
+    }
+
+    return user;
   }
 }

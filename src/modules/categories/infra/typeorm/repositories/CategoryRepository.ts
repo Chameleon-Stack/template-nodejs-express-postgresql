@@ -30,7 +30,7 @@ export class CategoryRepository implements ICategoryRepository {
     return query.getMany();
   }
 
-  async findById(id: string): Promise<Category> {
+  async findById(id: string): Promise<Category | null> {
     return this.ormRepository.findOne({
       where: { id },
     });

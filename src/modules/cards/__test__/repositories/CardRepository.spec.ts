@@ -100,7 +100,7 @@ describe('Card repository test', () => {
 
     await ormCardRepository.save(createdCard);
 
-    const foundCard = await cardRepository.findById(createdCard.id);
+    const foundCard = (await cardRepository.findById(createdCard.id)) as Card;
 
     expect(foundCard).toBeInstanceOf(Card);
     expect(foundCard.id).toEqual(createdCard.id);

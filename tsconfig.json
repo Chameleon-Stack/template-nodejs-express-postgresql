@@ -1,25 +1,16 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "es2021",
-      "ESNext.String"
-    ],
+    "lib": ["es2021", "ESNext.String"],
     "module": "commonjs",
     "outDir": "./dist",
-    "strict": false,
+    "strict": true,
     "strictPropertyInitialization": false,
     "baseUrl": "./src",
     "paths": {
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@config/*": [
-        "config/*"
-      ],
-      "@shared/*": [
-        "shared/*"
-      ]
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["shared/*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,

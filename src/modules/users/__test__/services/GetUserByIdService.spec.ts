@@ -19,9 +19,9 @@ describe('Get user by id service', () => {
       name: 'User test',
     } as User;
 
-    const userCreated = await userRepositoryInMemory.create(user);
+    const userCreated = (await userRepositoryInMemory.create(user)) as User;
 
-    const findUser = await getUserByIdService.execute(userCreated.id);
+    const findUser = await getUserByIdService.execute(userCreated?.id);
 
     expect(findUser.id).toEqual(userCreated.id);
     expect(findUser.name).toEqual(user.name);

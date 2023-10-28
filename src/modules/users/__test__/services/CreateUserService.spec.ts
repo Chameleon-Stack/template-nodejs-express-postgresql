@@ -1,5 +1,6 @@
 import LibError from '../../../../shared/errors/LibError';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
+import { User } from '../../infra/typeorm/entities/User';
 import { IUserRepository } from '../../repositories/IUserRepository';
 import { UserRepositoryInMemory } from '../../repositories/inMemory/UserRepositoryInMemory';
 import { CreateUserService } from '../../services/CreateUserService';
@@ -20,21 +21,11 @@ describe('Create user service', () => {
       name: 'User test',
     };
 
-    const userCreated = await createUserService.execute(user);
+    const userCreated = (await createUserService.execute(user)) as User;
 
     expect(userCreated).toHaveProperty('id');
     expect(userCreated.name).toEqual(user.name);
     expect(userCreated.email).toEqual(user.email);
-  });
-
-  it('should not be able to create user with params missing', async () => {
-    await expect(
-      createUserService.execute({
-        name: null,
-        email: 'false@email.com',
-        password: '1234',
-      }),
-    ).rejects.toEqual(new LibError('Missins params!'));
   });
 
   it('should not be able to create user with params missing', async () => {

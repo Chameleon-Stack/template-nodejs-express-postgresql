@@ -23,7 +23,7 @@ describe('Get user by id service', () => {
       name: 'User test',
     } as User;
 
-    const userCreated = await createUserService.execute(user);
+    const userCreated = (await createUserService.execute(user)) as User;
 
     const session = await sessionService.execute(user.email, user.password);
 

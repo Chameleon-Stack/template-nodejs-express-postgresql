@@ -28,7 +28,7 @@ describe('User repository test', () => {
 
     expect(user).toBeInstanceOf(User);
     expect(user).toHaveProperty('id');
-    expect(user.name).toEqual(name);
+    expect(user?.name).toEqual(name);
   });
 
   it('Should be able to delete user', async () => {
@@ -61,7 +61,7 @@ describe('User repository test', () => {
     const updateUser = await userRepository.update(user);
 
     expect(updateUser).toBeInstanceOf(User);
-    expect(updateUser.name).toEqual('test update 2');
+    expect(updateUser?.name).toEqual('test update 2');
   });
 
   it('Should be able to find by ID', async () => {
@@ -76,6 +76,6 @@ describe('User repository test', () => {
     const foundUser = await userRepository.findById(user.id);
 
     expect(foundUser).toBeInstanceOf(User);
-    expect(foundUser.id).toEqual(user.id);
+    expect(foundUser?.id).toEqual(user.id);
   });
 });
