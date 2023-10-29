@@ -125,7 +125,7 @@ O projeto irá rodar na seguinte URL:
 Para rodar os testes do projeto é necessário adicionar um banco de testes em seu projeto com o nome "test" e então alterar a variável NODE_ENV de dev para test, ficando dessa forma o arquivo .env:
 
 ```
-POSTGRESQL_URI_TEST='postgres://postgres:mypassword@localhost:5432/test'
+POSTGRESQL_URI='postgres://postgres:mypassword@localhost:5432/test'
 NODE_ENV=dev
 ```
 

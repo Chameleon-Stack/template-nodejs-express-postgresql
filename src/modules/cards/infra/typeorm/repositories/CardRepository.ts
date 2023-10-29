@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import dataSource from '../../../../../shared/infra/typeorm';
+import { dataSource } from '../../../../../shared/infra/typeorm';
 import { ICreateCardDTO } from '../../../dtos/ICreateCardDTO';
 import { IGetAllCardsDTO } from '../../../dtos/IGetAllCardsDTO';
 import { ICardRepository } from '../../../repositories/ICardRepository';
