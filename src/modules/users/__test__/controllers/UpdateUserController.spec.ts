@@ -14,7 +14,9 @@ describe('Update user controller test', () => {
   });
 
   it('Should be able to update a user', async () => {
-    updateUserServiceMock.prototype.execute.mockResolvedValueOnce(new User());
+    await updateUserServiceMock.prototype.execute.mockResolvedValueOnce(
+      new User(),
+    );
 
     const response = await request(app).patch(`/user`).send({
       email: 'example@example.com',

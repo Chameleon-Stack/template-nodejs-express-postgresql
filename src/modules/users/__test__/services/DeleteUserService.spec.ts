@@ -1,5 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import LibError from '../../../../shared/errors/LibError';
+import { ICardRepository } from '../../../cards/repositories/ICardRepository';
+import { CardRepositoryInMemory } from '../../../cards/repositories/inMemory/CardRepositoryInMemory';
+import { ICategoryRepository } from '../../../categories/repositories/ICategoryRepository';
+import { CategoryRepositoryInMemory } from '../../../categories/repositories/inMemory/CategoryRepositoryInMemory';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { User } from '../../infra/typeorm/entities/User';
 import { IUserRepository } from '../../repositories/IUserRepository';
@@ -8,11 +12,19 @@ import { DeleteUserService } from '../../services/DeleteUserService';
 
 describe('Delete user service', () => {
   let userRepositoryInMemory: IUserRepository;
+  let cardRepositoryInMemory: ICardRepository;
+  let categoryRepositoryInMemory: ICategoryRepository;
   let deleteUserUseCase: DeleteUserService;
 
   beforeEach(() => {
     userRepositoryInMemory = new UserRepositoryInMemory();
-    deleteUserUseCase = new DeleteUserService(userRepositoryInMemory);
+    cardRepositoryInMemory = new CardRepositoryInMemory();
+    categoryRepositoryInMemory = new CategoryRepositoryInMemory();
+    deleteUserUseCase = new DeleteUserService(
+      userRepositoryInMemory,
+      categoryRepositoryInMemory,
+      cardRepositoryInMemory,
+    );
   });
 
   it('should be able to delete user', async () => {
