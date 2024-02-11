@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
 import { dataSource } from '../../../../../shared/infra/typeorm';
-import { User } from '../../../../users/infra/typeorm/entities/User';
+import { ICreateCategoryDTO } from '../../../dtos/ICreateCategoryDTO';
 import { ICategoryRepository } from '../../../repositories/ICategoryRepository';
 import { Category } from '../entities/Category';
 
@@ -11,8 +11,8 @@ export class CategoryRepository implements ICategoryRepository {
     this.ormRepository = dataSource.getRepository(Category);
   }
 
-  async create(name: string, user: User): Promise<Category> {
-    const category = this.ormRepository.create({ name, user });
+  async create(new_category: ICreateCategoryDTO): Promise<Category> {
+    const category = this.ormRepository.create(new_category);
 
     return this.ormRepository.save(category);
   }

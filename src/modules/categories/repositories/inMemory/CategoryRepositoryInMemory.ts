@@ -1,12 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
 import { User } from '../../../users/infra/typeorm/entities/User';
+import { ICreateCategoryDTO } from '../../dtos/ICreateCategoryDTO';
 import { Category } from '../../infra/typeorm/entities/Category';
 import { ICategoryRepository } from '../ICategoryRepository';
 
 export class CategoryRepositoryInMemory implements ICategoryRepository {
   categories: Category[] = [];
 
-  async create(name: string, user: User): Promise<Category> {
+  async create({ name, color, user }: ICreateCategoryDTO): Promise<Category> {
     const category = new Category();
 
     Object.assign(user || new User(), {
@@ -16,6 +17,7 @@ export class CategoryRepositoryInMemory implements ICategoryRepository {
     Object.assign(category, {
       id: uuidv4(),
       name,
+      color,
       user,
       user_id: user.id,
     });
