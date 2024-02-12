@@ -34,8 +34,9 @@ describe('Category repository test', () => {
 
   it('Should be able to create a category', async () => {
     const name = 'test';
+    const color = 'red';
 
-    const category = await categoryRepository.create(name, user);
+    const category = await categoryRepository.create({ name, color, user });
 
     expect(category).toBeInstanceOf(Category);
     expect(category).toHaveProperty('id');
@@ -44,8 +45,9 @@ describe('Category repository test', () => {
 
   it('Should be able to delete category', async () => {
     const name = 'test 1';
+    const color = 'red';
 
-    const category = ormCategoryRepository.create({ name, user });
+    const category = ormCategoryRepository.create({ name, color, user });
 
     await ormCategoryRepository.save(category);
 
@@ -58,8 +60,9 @@ describe('Category repository test', () => {
 
   it('Should be able to find by ID', async () => {
     const name = 'test 2';
+    const color = 'red';
 
-    const category = ormCategoryRepository.create({ name, user });
+    const category = ormCategoryRepository.create({ name, color, user });
 
     await ormCategoryRepository.save(category);
 
@@ -73,8 +76,9 @@ describe('Category repository test', () => {
 
   it('Should be able to find all with filter name', async () => {
     const name = 'test 3';
+    const color = 'red';
 
-    const category = ormCategoryRepository.create({ name, user });
+    const category = ormCategoryRepository.create({ name, color, user });
 
     await ormCategoryRepository.save(category);
 
@@ -90,12 +94,28 @@ describe('Category repository test', () => {
 
   it('Should be able to find all', async () => {
     const name = 'test 4';
+    const color = 'red';
 
-    const category = ormCategoryRepository.create({ name, user });
+    const category = ormCategoryRepository.create({ name, color, user });
 
     await ormCategoryRepository.save(category);
 
     const foundCategories = await categoryRepository.findAll(user.id);
+
+    expect(foundCategories).toHaveLength(1);
+    expect(foundCategories[0]).toBeInstanceOf(Category);
+    expect(foundCategories[0].id).toEqual(category.id);
+  });
+
+  it('Should be able to find all by filters', async () => {
+    const name = 'test 5';
+    const color = 'red';
+
+    const category = ormCategoryRepository.create({ name, color, user });
+
+    await ormCategoryRepository.save(category);
+
+    const foundCategories = await categoryRepository.findAll(user.id, name);
 
     expect(foundCategories).toHaveLength(1);
     expect(foundCategories[0]).toBeInstanceOf(Category);

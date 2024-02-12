@@ -21,6 +21,7 @@ describe('Create category service', () => {
 
   it('should be able to create category', async () => {
     const name = 'Category test';
+    const color = 'red';
 
     const user = {
       name: 'test',
@@ -30,17 +31,22 @@ describe('Create category service', () => {
 
     const userCreated = await userRepositoryInMemory.create(user);
 
-    const categoryCreated = await createCategoryService.execute(
+    const categoryCreated = await createCategoryService.execute({
       name,
-      userCreated.id,
-    );
+      color,
+      user_id: userCreated.id,
+    });
 
     expect(categoryCreated).toHaveProperty('id');
   });
 
   it('should not be able to create category with user does not exists', async () => {
-    await expect(createCategoryService.execute('test', 'uuid')).rejects.toEqual(
-      new LibError('User does not exists!', 404),
-    );
+    await expect(
+      createCategoryService.execute({
+        name: 'test',
+        color: 'red',
+        user_id: 'uuid',
+      }),
+    ).rejects.toEqual(new LibError('User does not exists!', 404));
   });
 });

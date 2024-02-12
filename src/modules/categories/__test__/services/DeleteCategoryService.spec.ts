@@ -17,10 +17,11 @@ describe('Delete category service', () => {
   });
 
   it('should be able to delete category', async () => {
-    const categoryCreated = await categoryRepositoryInMemory.create(
-      'test',
-      new User(),
-    );
+    const categoryCreated = await categoryRepositoryInMemory.create({
+      name: 'test',
+      color: 'red',
+      user: new User(),
+    });
 
     await deleteCategoryService.execute(categoryCreated.id);
   });

@@ -106,7 +106,7 @@ describe('Card repository test', () => {
     expect(foundCard.id).toEqual(createdCard.id);
   });
 
-  it('Should be able to find all', async () => {
+  it('Should be able to find all by filters', async () => {
     const card: ICreateCardDTO = {
       status: '10',
       title: 'Test 5',
@@ -120,6 +120,10 @@ describe('Card repository test', () => {
 
     const foundCard = await cardRepository.findAll({
       user_id: createdCard.user_id,
+      status: card.status,
+      title: card.title,
+      description: card.description,
+      id: createdCard.id,
     } as IGetAllCardsDTO);
 
     expect(foundCard[0]).toBeInstanceOf(Card);
