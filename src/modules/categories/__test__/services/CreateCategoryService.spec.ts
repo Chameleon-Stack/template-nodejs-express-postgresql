@@ -1,6 +1,7 @@
 import LibError from '../../../../shared/errors/LibError';
 import { IUserRepository } from '../../../users/repositories/IUserRepository';
 import { UserRepositoryInMemory } from '../../../users/repositories/inMemory/UserRepositoryInMemory';
+import { ICreateCategoryUseCaseDTO } from '../../dtos/ICreateCategoryUseCaseDTO';
 import { ICategoryRepository } from '../../repositories/ICategoryRepository';
 import { CategoryRepositoryInMemory } from '../../repositories/inMemory/CategoryRepositoryInMemory';
 import { CreateCategoryService } from '../../services/CreateCategoryService';
@@ -48,5 +49,14 @@ describe('Create category service', () => {
         user_id: 'uuid',
       }),
     ).rejects.toEqual(new LibError('User does not exists!', 404));
+  });
+
+  it('should not be able to create category with user does not exists', async () => {
+    await expect(
+      createCategoryService.execute({
+        color: 'red',
+        user_id: 'uuid',
+      } as ICreateCategoryUseCaseDTO),
+    ).rejects.toEqual(new LibError('Name/User id is required!', 400));
   });
 });

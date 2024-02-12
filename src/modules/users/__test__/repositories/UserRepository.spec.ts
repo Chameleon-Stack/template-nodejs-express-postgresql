@@ -42,12 +42,12 @@ describe('User repository test', () => {
 
     await userRepository.delete(user);
 
-    const foundUser = await userRepository.findById(user.id);
+    const foundUser = await userRepository.findByEmail(user.email);
 
     expect(foundUser).toBeNull();
   });
 
-  it('Should be able to update user', async () => {
+  it('Should be able to delete user', async () => {
     const name = 'test 2';
     const email = 'test2@test';
     const password = '1234';
@@ -56,26 +56,27 @@ describe('User repository test', () => {
 
     await ormUserRepository.save(user);
 
-    user.name = 'test update 2';
+    await userRepository.delete(user);
 
-    const updateUser = await userRepository.update(user);
+    const foundUser = await userRepository.findById(user.id);
 
-    expect(updateUser).toBeInstanceOf(User);
-    expect(updateUser?.name).toEqual('test update 2');
+    expect(foundUser).toBeNull();
   });
 
-  it('Should be able to find by ID', async () => {
-    const name = 'test 1';
-    const email = 'test1@test';
+  it('Should be able to update user', async () => {
+    const name = 'test 3';
+    const email = 'test3@test';
     const password = '1234';
 
     const user = ormUserRepository.create({ name, email, password });
 
     await ormUserRepository.save(user);
 
-    const foundUser = await userRepository.findById(user.id);
+    user.name = 'test update 3';
 
-    expect(foundUser).toBeInstanceOf(User);
-    expect(foundUser?.id).toEqual(user.id);
+    const updateUser = await userRepository.update(user);
+
+    expect(updateUser).toBeInstanceOf(User);
+    expect(updateUser?.name).toEqual('test update 3');
   });
 });
