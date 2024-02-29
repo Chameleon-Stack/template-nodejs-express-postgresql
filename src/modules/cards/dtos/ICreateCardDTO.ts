@@ -1,3 +1,4 @@
+import { Category } from '../../categories/infra/typeorm/entities/Category';
 import { User } from '../../users/infra/typeorm/entities/User';
 
 export interface ICreateCardDTO {
@@ -5,4 +6,5 @@ export interface ICreateCardDTO {
   title: string;
   description: string;
   user: User;
+  categories?: Category[];
 }
