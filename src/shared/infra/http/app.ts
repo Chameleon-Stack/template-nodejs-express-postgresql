@@ -1,18 +1,21 @@
-import 'express-async-errors';
-import 'reflect-metadata';
-import './container';
+import cors from 'cors';
 import express, {
   NextFunction,
   Request,
   RequestHandler,
   Response,
 } from 'express';
+import 'express-async-errors';
+import 'reflect-metadata';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../../../swagger.json';
 import LibError from '../../errors/LibError';
+import './container';
 import { router as routes } from './routes';
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json() as RequestHandler);
 
